@@ -1,0 +1,4 @@
+
+RewriteEngine on
+RewriteCond %{HTTP_HOST} ^absen\.pt\-prasasti\.com$
+RewriteRule ^/?$ "https\:\/\/absen\.pt\-prasasti\.com\/" [R=301,L]
