@@ -22,36 +22,33 @@ if ($alasan == 'Izin') {
     }
 } else {
     // Upload file
-    if (isset($_FILES['bukti_sakit']) && $_FILES['bukti_sakit']['error'] === 0) {
-
+    if (isset($_FILES['bukti_sakit'])) {
         $file_name = $_FILES['bukti_sakit']['name'];
         $file_tmp = $_FILES['bukti_sakit']['tmp_name'];
         $file_size = $_FILES['bukti_sakit']['size'];
         $file_type = $_FILES['bukti_sakit']['type'];
-
         $file_ext = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));
-
         $upload_dir = '../bukti_sakit/';
 
         $new_file_name = uniqid() . '.' . $file_ext;
 
-        if (file_exists($upload_dir . $new_file_name)) {
-            echo "Sorry, file already exists.";
+        if (move_uploaded_file($file_tmp, $upload_dir . $new_file_name)) {
+
         } else {
-            if (move_uploaded_file($file_tmp, $upload_dir . $new_file_name)) {
-                echo "<script>alert('File Diupload');</script>";
-            } else {
-                echo "Sorry, there was an error uploading your file.";
-            }
+            echo "Sorry, there was an error uploading your file.";
         }
     }
 
-    $query = "INSERT INTO izin SET kode_izin='$kode_izin', nip='$nip', tanggal_mulai='$tanggal_mulai', tanggal_akhir='$tanggal_akhir', lama='$lama', keterangan='$keterangan', status='$status', bukti_sakit='$bukti_sakit', type='$alasan'";
-    mysqli_query($koneksi, $query);
-
-    echo "<script>alert('Data Pengajuan Izin Terkirim');window.location='index.php?nip=$nip'</script>";
+    if (mysqli_query($koneksi, $query)) {
+        echo "<script>alert('Data Pengajuan Izin Sakit Terkirim');window.location='../menu.php'</script>";
+    } else {
+        echo "<script>alert('Terjadi kesalahan saat menyimpan dataizin sakit. Silakan coba lagi.');window.location='index.php?nip=$nip'</script>";
+    }
 }
 $query = "INSERT INTO izin SET kode_izin='$kode_izin', nip='$nip', tanggal_mulai='$tanggal_mulai', tanggal_akhir='$tanggal_akhir', lama='$lama', keterangan='$keterangan', type='$alasan', status='$status'";
-mysqli_query($koneksi, $query);
 
-echo "<script>alert('Data Pengajuan Izin Terkirim');window.location='index.php?nip=$nip'</script>";
+if (mysqli_query($koneksi, $query)) {
+    echo "<script>alert('Data Pengajuan Izin Terkirim');window.location='index.php?nip=$nip'</script>";
+} else {
+    echo "<script>alert('Terjadi kesalahan saat menyimpan data izin. Silakan coba lagi.');window.location='index.php?nip=$nip'</script>";
+}
