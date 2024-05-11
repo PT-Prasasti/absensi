@@ -45,7 +45,7 @@ $nip = $_SESSION['nip'];
                                             Pengajuan Cuti -</b></a>
                                 </div>
                                 <div class="col-sm-12">
-                                    <a href="login_izin.php" class="btn btn-block mb-2 btn-info"><b>- Pengajuan Izin
+                                    <a href="izin/form_add.php" class="btn btn-block mb-2 btn-info"><b>- Pengajuan Izin
                                             -</b></a>
                                 </div>
                                 <div class="text-white">
@@ -81,15 +81,17 @@ $nip = $_SESSION['nip'];
                                                             <tr>
                                                                 <td class="text-center">
                                                                     <?= Date('d/m/Y', strtotime($dt['tgl'])) ?></td>
-                                                                <td class="text-center"><?= Date('H:i', $start) ?></td>
                                                                 <td class="text-center">
-                                                                    <?= isset($dt['keluar']) ? Date('H:i', $end) : '-' ?>
+                                                                    <?= Date('H:i', strtotime($dt['masuk'])) ?></td>
+                                                                <td class="text-center">
+                                                                    <?= isset($dt['keluar']) ? Date('H:i', strtotime($dt['keluar'])) : '-' ?>
                                                                 </td>
                                                             </tr>
                                                         <?php
                                                         }
                                                         ?>
                                                     </tbody>
+
                                                 </table>
                                             </div>
                                         </div>

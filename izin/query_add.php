@@ -2,31 +2,56 @@
 include '../koneksi.php';
 
 $kode_izin          = $_POST['kode_izin'];
+
 $nip                = $_POST['nip'];
 $tanggal_mulai      = $_POST['tanggal_mulai'];
 $tanggal_akhir      = $_POST['tanggal_akhir'];
 $lama               = $_POST['lama'];
 $keterangan         = $_POST['keterangan'];
 $alasan             = $_POST['type'];
-// $bukti_sakit        = $_POST['bukti_sakit'];
 $status             = 'On Progress';
 
-// // Check if file is uploaded
-// if ($bukti_sakit['error'] === UPLOAD_ERR_OK) {
+$today = date('Y-m-d');
+$threeDaysBefore = date('Y-m-d', strtotime('-3 days', strtotime($tanggal_mulai)));
 
-//     // Generate a unique filename for the uploaded file
-//     $filename = uniqid() . '.' . $bukti_sakit['name'];
+if ($alasan == 'Izin') {
+    if ($today < $threeDaysBefore) {
+        echo "<script>alert('Data Pengajuan Izin Terkirim');window.location='../menu.php'</script>";
+    } else {
+        echo "<script>alert('Pengajuan izin harus dilakukan minimal 3 hari sebelum tanggal mulai izin.');window.location='index.php?nip=$nip'</script>";
+    }
+} else {
+    // Upload file
+    if (isset($_FILES['bukti_sakit']) && $_FILES['bukti_sakit']['error'] === 0) {
 
-//     // Move the uploaded file to the "bukti_sakit" directory
-//     move_uploaded_file($bukti_sakit['tmp_name'], '../bukti_sakit/' . $filename);
+        $file_name = $_FILES['bukti_sakit']['name'];
+        $file_tmp = $_FILES['bukti_sakit']['tmp_name'];
+        $file_size = $_FILES['bukti_sakit']['size'];
+        $file_type = $_FILES['bukti_sakit']['type'];
 
-//     // Update the "bukti_sakit" field with the filename
-//     $bukti_sakit = $filename;
-// }
+        $file_ext = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));
 
-// Insert data into "izin" table
+        $upload_dir = '../bukti_sakit/';
+
+        $new_file_name = uniqid() . '.' . $file_ext;
+
+        if (file_exists($upload_dir . $new_file_name)) {
+            echo "Sorry, file already exists.";
+        } else {
+            if (move_uploaded_file($file_tmp, $upload_dir . $new_file_name)) {
+                echo "<script>alert('File Diupload');</script>";
+            } else {
+                echo "Sorry, there was an error uploading your file.";
+            }
+        }
+    }
+
+    $query = "INSERT INTO izin SET kode_izin='$kode_izin', nip='$nip', tanggal_mulai='$tanggal_mulai', tanggal_akhir='$tanggal_akhir', lama='$lama', keterangan='$keterangan', status='$status', bukti_sakit='$bukti_sakit', type='$alasan'";
+    mysqli_query($koneksi, $query);
+
+    echo "<script>alert('Data Pengajuan Izin Terkirim');window.location='index.php?nip=$nip'</script>";
+}
 $query = "INSERT INTO izin SET kode_izin='$kode_izin', nip='$nip', tanggal_mulai='$tanggal_mulai', tanggal_akhir='$tanggal_akhir', lama='$lama', keterangan='$keterangan', type='$alasan', status='$status'";
 mysqli_query($koneksi, $query);
 
 echo "<script>alert('Data Pengajuan Izin Terkirim');window.location='index.php?nip=$nip'</script>";
-?>

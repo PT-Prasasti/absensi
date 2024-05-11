@@ -1,6 +1,6 @@
-<?php include '../layout/header_cuti.php'; ?>
-
-<?php
+<?php 
+    include '../layout/header_user.php'; 
+    session_start();
     $nip=$_SESSION['nip'];
  
     $karyawan   = mysqli_query($koneksi, "SELECT * FROM karyawan join jabatan on karyawan.kode_jabatan=jabatan.kode_jabatan WHERE nip='$nip'");
@@ -11,103 +11,126 @@
     $kodeizin = $data['kodeMax'];
     $urutan = (int) substr($kodeizin, 3, 3);
     $urutan++;
-    $huruf = "PTM-";
-    $kodecuti = $huruf . sprintf("%03s", $urutan);
+    $huruf = "PI-";
+    $kodeizin = $huruf . sprintf("%03s", $urutan);
 ?>
-
-<div class="content-wrapper">
-    <div class="content">
-        <div class="container-fluid">
-            <div class="row ">
-                <div class="col-lg-1 mt-3"></div>
-                <div class="col-lg-10 mt-3">
-                    <div class="card mb-4">
-                        <div class="card-header">
-                            <b>Form Pengajuan Tidak Masuk</b>
+<div class="row">
+    <div class=" col-sm-12 mx-auto">
+        <div class="">
+            <div class="card-body">
+                <div class="col-sm-12">
+                    <a href="../menu.php" class="btn btn-block mb-2 btn-danger"><b>- Menu -</b></a>
+                </div>
+                <div class="text-center">
+                    <div class="divider">
+                        <div class="divider-text text-primary"><b>Pengajuan Tidak Masuk</b></div>
+                    </div>
+                </div>
+                <form action="query_add.php" method="POST">
+                    <div class="form-group position-relative has-icon-left">
+                        <label for="" class="form-label text-white">Tanggal Izin / Dari - Sampai</label>
+                        <div class="position-relative row">
+                            <div class="col-sm-12 mb-2">
+                                <input type="date" name="tanggal_mulai" class="form-control">
+                            </div>
+                            <div class="col-sm-12">
+                                <input type="date" name="tanggal_akhir" class="form-control">
+                            </div>
                         </div>
-                        <div class="card-body">
-                            <form method="post" action="query_add.php" enctype="multipart/form-data">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="mb-3">
-                                            <label for="" class="form-label">NIP</label>
-                                            <input type="text" class="form-control" name="kode_izin"
-                                                value="<?php echo $kodeizin ?>" hidden>
-                                            <input type="text" class="form-control" name="nip"
-                                                value="<?php echo $row['nip'];?>" readonly required>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="" class="form-label">Nama</label>
-                                            <input type="text" class="form-control" name="nama" placeholder="Nama"
-                                                value="<?php echo $row['nama'];?>" required readonly>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="" class="form-label">Jabatan / Posisi</label>
-                                            <input type="text" class="form-control" name="nama_jabatan"
-                                                placeholder="nama_jabatan" value="<?php echo $row['nama_jabatan'];?>"
-                                                required readonly>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="" class="form-label">Telepon</label>
-                                            <input type="text" class="form-control" name="telepon" placeholder="telepon"
-                                                value="<?php echo $row['telepon'];?>" required readonly>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="mb-3">
+                    </div>
+                    <div class="form-group position-relative has-icon-left">
+                        <div class="position-relative">
+                            <input type="number" name="lama" class="form-control" placeholder="0 Hari" required>
+                        </div>
+                    </div>
+                    <div class="form-group position-relative has-icon-left">
+                        <div class="position-relative">
+                            <input type="text" name="keterangan" class="form-control" placeholder="Keterangan" required>
+                        </div>
+                    </div>
+                    <div class="form-group position-relative has-icon-left">
+                        <div class="position-relative">
+                            <select name="type" id="alasan" class="form-select" required>
+                                <option value="0">- Pilih Alasan -</option>
+                                <option value="Izin">Izin</option>
+                                <option value="Sakit">Sakit</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group position-relative has-icon-left hidden" id="bukti_sakit">
+                        <div class="position-relative">
+                            <input class="form-control" type="file" name="bukti_sakit">
+                        </div>
+                    </div>
 
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <label for="" class="form-label">Tanggal Cuti / Dari</label>
-                                                    <input type="date" class="form-control" name="tanggal_mulai"
-                                                        required>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <label for="" class="form-label">Tanggal Cuti / Sampai</label>
-                                                    <input type="date" class="form-control" name="tanggal_akhir"
-                                                        required>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="" class="form-label">Lama Cuti</label>
-                                            <input type="number" class="form-control" name="lama" placeholder="0 Hari"
-                                                required>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="" class="form-label">Keterangan</label>
-                                            <textarea class="form-control" name="keterangan" rows="5"></textarea>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="type" class="form-label">Alasan</label>
-                                            <select name="type" id="type" class="form-select">
-                                                <option value="0" disabled selected>- Pilih Alasan Izin -</option>
-                                                <option value="Izin">Izin</option>
-                                                <option value="Sakit">Sakit</option>
-                                            </select>
-                                        </div>
-                                        <div class="mb-3 hidden" id="container_sakit">
-                                            <label for="bukti_sakit">Bukti Surat Dokter</label>
-                                            <input type="file" name="bukti_sakit" id="bukti_sakit" class="form-control">
-                                        </div>
-                                    </div>
-                                </div>
+                    <div class="mb-3" hidden>
+                        <input type="text" class="form-control" name="foto_in" value="<?php echo $row['foto_in'];?>"
+                            readonly required>
+                        <input type="text" class="form-control" name="foto_out" value="<?php echo $row['foto_out'];?>"
+                            readonly required>
+                        <input type="text" class="form-control" name="telepon" placeholder="telepon"
+                            value="<?php echo $row['telepon'];?>" required readonly>
+                        <input type="text" class="form-control" name="nama_jabatan" placeholder="nama_jabatan"
+                            value="<?php echo $row['nama_jabatan'];?>" required readonly>
+                        <input type="text" class="form-control" name="nama" placeholder="Nama"
+                            value="<?php echo $row['nama'];?>" required readonly>
+                        <input type="text" class="form-control" name="nip" value="<?php echo $row['nip'];?>" readonly
+                            required>
+                        <input type="text" class="form-control" name="kode_izin" value="<?php echo $kodeizin ?>">
+                    </div>
 
+                    <div class="clearfix mt-3 mb-3">
+                        <button type="submit" class="btn btn-block btn-success float-right"><b>- SIMPAN -</b></button>
+                    </div>
+                </form>
 
+                <div class="text-center">
+                    <div class="divider">
+                        <div class="divider-text text-primary"><b>Daftar Izin</b></div>
+                    </div>
+                </div>
+                <div class="col-md-12" style="font-size:10px">
+                    <div class="card">
+                        <div class="px-0 pb-0">
+                            <div class="table-responsive">
+                                <table class="table mb-0" id="">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">Tanggal</th>
+                                            <th class="text-center">Lama</th>
+                                            <th class="text-center">Type</th>
+                                            <th class="text-center">Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                                $query ="select * from cuti join karyawan on cuti.`nip`= karyawan.`nip`";
+                                                $hasil = mysqli_query($koneksi, $query);
+                                                while($data = mysqli_fetch_array($hasil))
+                                                {
+                                            ?>
+                                    <tbody>
+                                        <tr>
+                                            <td class="text-center">
+                                                <?= Date('d-m-Y', strtotime($data['tanggal_mulai'])) ?></td>
+                                            <td class="text-center"><?php echo $data['lama'] ?></td>
+                                            <td class="text-center"><?php echo $data['type'] ?></td>
+                                            <?php
+                                                        if($data['status'] == 'On Progress'){
+                                                            echo '<td class="text-center"><span class="badge bg-warning">On Progress</span></td>';
+                                                        } else if($data['status'] == 'Approve'){
+                                                            echo '<td class="text-center"><span class="badge bg-success">Approve</span></td>';
+                                                        } else if($data['status'] == 'Declined'){
+                                                            echo '<td class="text-center"><span class="badge bg-danger">Declined</span></td>';
+                                                        } 
+                                                    ?>
 
+                                        </tr>
 
-                                <div class="mb-3 text-right">
-                                    <a href="index.php" class="btn btn-danger btn-icon-split mr-2">
-                                        <span class="text">KEMBALI</span>
-                                    </a>
-                                    <button type="submit" class="btn btn-success btn-icon-split">
-                                        <span class="icon text-white-50">
-                                            <i class="fa-solid fa-floppy-disk"></i>
-                                        </span>
-                                        <span class="text">SIMPAN</span>
-                                    </button>
-                                </div>
-                            </form>
+                                    </tbody>
+                                    <?php } ?>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -116,19 +139,16 @@
     </div>
 </div>
 <script>
-    const alasanSelect = document.getElementById('type');
-    const buktiSakitInput = document.getElementById('bukti_sakit');
-    const buktiSakitContainer = document.getElementById('container_sakit');; // Get the parent container
+    let type = document.getElementById('alasan');
+    let bukti_sakit = document.getElementById('bukti_sakit');
 
-    alasanSelect.addEventListener('change', function () {
-        const selectedValue = this.value;
-
-        if (selectedValue === 'Sakit') {
-            buktiSakitContainer.classList.remove('hidden'); // Show the container
+    type.addEventListener("change", function () {
+        console.log(this.value);
+        if (this.value == 'Sakit') {
+            bukti_sakit.classList.remove('hidden');
         } else {
-            buktiSakitContainer.classList.add('hidden'); // Hide the container
+            bukti_sakit.classList.add('hidden');
         }
     });
 </script>
-
-<?php include '../layout/footer.php'; ?>
+<?php include '../layout/footer_user.php'; ?>

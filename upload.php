@@ -5,6 +5,7 @@ $nip = $_POST['nip'];
 $telepon = $_POST['telepon'];
 $absen = $_POST['absen'];
 $time = time();
+$tgl = date('Y-m-d');
 
 $cek = "SELECT * FROM karyawan WHERE nip='$nip' AND telepon='$telepon'";
 if (mysqli_num_rows(mysqli_query($koneksi, $cek)) < 1) {
@@ -27,7 +28,7 @@ if ($absen == 'in') {
         $file_destination = 'absensi/in/' . $filename;
         file_put_contents($file_destination, $data);
     }
-    $query = "INSERT INTO absen SET nip='$nip',waktu_in=CURRENT_TIMESTAMP,foto_in='$filename'";
+    $query = "INSERT INTO absen SET nip='$nip', tgl='$tgl', waktu_in=CURRENT_TIMESTAMP,foto_in='$filename'";
     mysqli_query($koneksi, $query);
 } else {
     // cek durasi kerja 8 jam
