@@ -1,5 +1,7 @@
 <?php
     include '../koneksi.php';
+    session_start();
+    $role = $_SESSION['role'];
 ?>
 
 
@@ -25,7 +27,7 @@
         <div id="sidebar" class='active'>
             <div class="sidebar-wrapper active">
                 <div class="sidebar-header text-center">
-                    <img src="../assets/images/logo.png" alt="" srcset="" width="80%">
+                    <img src="../assets/images/logo.png" alt="" srcset="" width="70%">
                 </div>
                 <div class="sidebar-menu">
                     <ul class="menu">
@@ -35,6 +37,7 @@
                                 <span>Dashboard</span>
                             </a>
                         </li>
+                        <li class="sidebar-title">Laporan</li>
                         
                         <li class="sidebar-item">
                             <a href="../laporan/index.php" class='sidebar-link'>
@@ -49,6 +52,7 @@
                             </a>
                         </li>
 
+                        <li class="sidebar-title">Menu Approval</li>
                         <li class="sidebar-item">
                             <a href="../approve/index.php" class='sidebar-link'>
                                 <i data-feather="check" width="20"></i> 
@@ -61,9 +65,15 @@
                                 <span>Approval Pengajuan Cuti</span>
                             </a>
                         </li>
+                        <li class="sidebar-item">
+                            <a href="../app_izin/index.php" class='sidebar-link'>
+                                <i data-feather="check" width="20"></i> 
+                                <span>Approval Pengajuan Izin</span>
+                            </a>
+                        </li>
 
 
-                        <li class="sidebar-title">Menu Internal</li>
+                        <li class="sidebar-title">Data Internal</li>
                         <li class="sidebar-item">
                             <a href="../data_karyawan/index.php" class='sidebar-link'>
                                 <i data-feather="users" width="20"></i> 
@@ -76,12 +86,12 @@
                                 <span>Data Jabatan / Posisi</span>
                             </a>
                         </li>
-                        <li class="sidebar-item">
+                        <!-- <li class="sidebar-item">
                             <a href="index.html" class='sidebar-link'>
                                 <i data-feather="settings" width="20"></i> 
                                 <span>Data Admin</span>
                             </a>
-                        </li>
+                        </li> -->
                     </ul>
                 </div>
                 <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
@@ -101,10 +111,10 @@
                                 <div class="avatar mr-1">
                                     <img src="../assets/images/avatar/avatar-s-1.png" alt="" srcset="">
                                 </div>
-                                <div class="d-none d-md-block d-lg-inline-block">Hi, Admin</div>
+                                <div class="d-none d-md-block d-lg-inline-block">Hi, <?= ucfirst($_SESSION['role']) ?></div>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right">
-                                <a class="dropdown-item" href="../index.php"><i data-feather="log-out"></i> Logout</a>
+                                <a class="dropdown-item" href="../admin.php"><i data-feather="log-out"></i> Logout</a>
                             </div>
                         </li>
                     </ul>

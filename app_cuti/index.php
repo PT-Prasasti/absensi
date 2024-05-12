@@ -36,6 +36,9 @@
                                             <td class="text-center"><?= Date('d-m-Y', strtotime($data['tanggal_akhir'])) ?></td>
                                             <td class="text-center"><?php echo $data['lama'] ?> Hari</td>
                                             <?php
+                                                if($_SESSION['role'] == 'hod' || $_SESSION['role'] == 'admin') {
+                                            ?>
+                                            <?php
                                                 if($data['status'] == 'On Progress'){
                                                     echo '<td class="text-center">
                                                             <span class="badge bg-warning">
@@ -49,6 +52,31 @@
                                                 } else if($data['status'] == 'Declined'){
                                                     echo '<td class="text-center"><span class="badge bg-danger">Declined</span></td>';
                                                 } 
+                                            ?>
+                                            <?php
+                                                }
+                                            ?>
+
+                                            <?php
+                                                if($_SESSION['role'] == 'hrd' || $_SESSION['role'] == 'manager') {
+                                            ?>
+                                            <?php
+                                                if($data['status'] == 'On Progress'){
+                                                    echo '<td class="text-center">
+                                                            <span class="badge bg-warning">
+                                                                
+                                                                    <b>On Progress</b>
+                                                                
+                                                            </span>
+                                                        </td>';
+                                                } else if($data['status'] == 'Approve'){
+                                                    echo '<td class="text-center"><span class="badge bg-success">Approve</span></td>';
+                                                } else if($data['status'] == 'Declined'){
+                                                    echo '<td class="text-center"><span class="badge bg-danger">Declined</span></td>';
+                                                } 
+                                            ?>
+                                            <?php
+                                                }
                                             ?>
                                         </tr>
 
