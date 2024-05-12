@@ -2,7 +2,7 @@
             
     <div class="main-content container-fluid">
         <section class="section">
-            <div class="row mb-4">
+            <!-- <div class="row mb-4">
                 <div class="col-md-12">
                     <div class="card p-3">
                         <div class="row d-flex align-items-center">
@@ -25,6 +25,73 @@
                             </div>
                         </div>
                         <canvas id="myChart"></canvas>
+                    </div>
+                </div>
+            </div> -->
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <h4 class="card-title">Saldo Cuti Karyawan</h4>
+                        </div>
+                        <div class="card-body px-0 pb-0">
+                            <div class="table-responsive">
+                                <table class="table mb-0" id="">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">Nama Karyawan</th>
+                                            <th class="text-center">Sisa Cuti</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                            $query ="SELECT * FROM karyawan";
+                                            $hasil = mysqli_query($koneksi, $query);
+                                            $no=0;
+                                            while($data = mysqli_fetch_array($hasil))
+                                            {
+                                        ?>
+                                        <tr>
+                                            <td><?= $data['nama'] ?></td>
+                                            <td class="text-center"><?= $data['sisa_cuti'] ?></td>
+                                        </tr>
+                                        <?php
+                                                $no++;
+                                            }
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <h4 class="card-title">Jumlah Izin Karyawan</h4>
+                        </div>
+                        <div class="card-body px-0 pb-0">
+                            <div class="table-responsive">
+                                <table class="table mb-0" id="">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">Nama Karyawan</th>
+                                            <th class="text-center">Izin</th>
+                                            <th class="text-center">Sakit</th>
+                                            <th class="text-center">Alfa</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        
+                                        <tr>
+                                            <td></td>
+                                            <td class="text-center"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

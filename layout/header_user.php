@@ -16,4 +16,15 @@
 </head>
 
 <body>
-    <div id="auth">
+    <div id="auth" style="padding-top: 0px">
+
+        <div class="">
+            <div class="row">
+                <div class="col-md-5 col-sm-12 mx-auto">
+                    <div class=" pt-4">
+                        <div class="card-body">
+                            <div class="text-center mb-3">
+                                <img src="../assets/images/logo.png" height="80" class=''>
+                                <p id="clock"></p>
+                                <p></p>
+                            </div>

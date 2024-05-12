@@ -6,7 +6,7 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header d-flex justify-content-between align-items-center">
-                            <h4 class="card-title">Approval Absen Karyawan Bulan Februari</h4>
+                            <h4 class="card-title">Approval Absen Karyawan</h4>
                         </div>
                         <div class="card-body px-0 pb-0">
                             <div class="table-responsive">
@@ -54,6 +54,9 @@
                                             <td class="text-center"><?= Date('H:i', $start) ?></td>
                                             <td class="text-center"><?= isset($dt['keluar']) ? Date('H:i', $end) : '-' ?></td>
                                             <?php
+                                                if($_SESSION['role'] == 'hrd' || $_SESSION['role'] == 'admin') {
+                                            ?>
+                                            <?php
                                                 if($dt['status'] == 'Waiting for Approval'){
                                                     echo '<td class="text-center">
                                                             <span class="badge bg-warning">
@@ -69,6 +72,31 @@
                                                 } else if($dt['status'] == ''){
                                                     echo '<td class="text-center"><span class="badge bg-info">Expired</span></td>';
                                                 } 
+                                            ?>
+                                            <?php
+                                                }
+                                            ?>
+
+<?php
+                                                if($_SESSION['role'] == 'hod' || $_SESSION['role'] == 'manager') {
+                                            ?>
+                                            <?php
+                                                if($dt['status'] == 'Waiting for Approval'){
+                                                    echo '<td class="text-center">
+                                                            <span class="badge bg-warning">
+                                                                    <b>Waiting for Approval</b>
+                                                            </span>
+                                                        </td>';
+                                                } else if($dt['status'] == 'Approve'){
+                                                    echo '<td class="text-center"><span class="badge bg-success">Approve</span></td>';
+                                                } else if($dt['status'] == 'Declined'){
+                                                    echo '<td class="text-center"><span class="badge bg-danger">Declined</span></td>';
+                                                } else if($dt['status'] == ''){
+                                                    echo '<td class="text-center"><span class="badge bg-info">Expired</span></td>';
+                                                } 
+                                            ?>
+                                            <?php
+                                                }
                                             ?>
                                         </tr>
 

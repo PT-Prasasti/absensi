@@ -51,3 +51,16 @@ if ($alasan == 'Izin') {
         echo "<script>alert('Berkas bukti sakit tidak terunggah.');window.location='../menu.php'</script>";
     }
 }
+
+    if (mysqli_query($koneksi, $query)) {
+        echo "<script>alert('Data Pengajuan Izin Sakit Terkirim');window.location='form_add.php'</script>";
+    } else {
+        echo "<script>alert('Terjadi kesalahan saat menyimpan data izin sakit. Silakan coba lagi.');window.location='form_add.php?nip=$nip'</script>";
+    }
+$query = "INSERT INTO izin SET kode_izin='$kode_izin', nip='$nip', tanggal_mulai='$tanggal_mulai', tanggal_akhir='$tanggal_akhir', lama='$lama', keterangan='$keterangan', type='$alasan', status='$status'";
+
+if (mysqli_query($koneksi, $query)) {
+    echo "<script>alert('Data Pengajuan Izin Terkirim');window.location='form_add.php?nip=$nip'</script>";
+} else {
+    echo "<script>alert('Terjadi kesalahan saat menyimpan data izin. Silakan coba lagi.');window.location='form_add.php?nip=$nip'</script>";
+}

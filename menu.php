@@ -17,7 +17,7 @@ $nip = $_SESSION['nip'];
 </head>
 
 <body>
-    <div id="auth">
+    <div id="auth" style="padding-top: 0px">
 
         <div class="">
             <div class="row">

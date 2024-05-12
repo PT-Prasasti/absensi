@@ -19,14 +19,14 @@
 </head>
 
 <body>
-    <div id="auth">
+    <div id="auth" style="padding-top: 0px">
         
         <div class="">
             <div class="row">
                 <div class="col-md-5 col-sm-12 mx-auto">
                     <div class=" pt-4">
                         <div class="card-body">
-                            <div class="text-center mb-5">
+                            <div class="text-center ">
                                 <img src="assets/images/logo.png" height="80" class=''>
                                 <p id="clock"></p>
                                 <p></p>
@@ -53,6 +53,9 @@
                                     </div>
                                 </div>                        
                             </form>
+                            <div class="col-sm-12 mb-5">
+                                    <a href="menu.php" class="btn btn-block mb-2 btn-warning"><b>- MENU -</b></a>
+                                </div>
                             <div class="divider">
                                 <div class="divider-text"><b>ABSEN KERJA</b></div>
                             </div>
@@ -63,9 +66,49 @@
                                 <div class="col-sm-12 mb-3">
                                     <button onclick="absen('out')" class="btn btn-block mb-2 btn-danger" data-toggle="modal" data-target="#exampleModal"><b>- OUT -</b></button>
                                 </div>
-                                <hr class="text-white">
-                                <div class="col-sm-12 mb-3">
-                                    <a href="menu.php" class="btn btn-block mb-2 btn-warning"><b>- MENU -</b></a>
+                            </div>
+
+                            <div class="divider">
+                                <div class="divider-text"><b>ABSEN Hari Ini</b></div>
+                            </div>
+                            <div class="col-md-12" style="font-size:10px">
+                                <div class="card">
+                                    <div class="px-0 pb-0">
+                                        <div class="table-responsive">
+                                            <table class="table mb-0" id="">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="text-center">Tanggal</th>
+                                                        <th class="text-center">Masuk</th>
+                                                        <th class="text-center">Pulang</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <?php
+                                                        $query="SELECT absen.id,absen.nip,absen.tgl,absen.status,absen.keterangan,karyawan.nama,karyawan.telepon,jabatan.nama_jabatan,absen.waktu_in AS masuk,absen.waktu_out AS keluar FROM absen JOIN karyawan ON absen.nip=karyawan.nip JOIN jabatan ON karyawan.kode_jabatan=jabatan.kode_jabatan WHERE absen.tgl=CURRENT_DATE AND absen.nip='$nip'";
+                                                        $hasil=mysqli_query($koneksi, $query);
+                                                        while($dt=mysqli_fetch_array($hasil)){
+                                                    ?>
+                                                    <tr>
+                                                        <td class="text-center">
+                                                            <span class="badge bg-info">
+                                                                <?= Date('d/m/Y', strtotime($dt['tgl'])) ?>
+                                                            </span>  
+                                                        </td>
+                                                        <td class="text-center">
+                                                                <?= Date('H:i', $start) ?>
+                                                        </td>
+                                                        <td class="text-center">
+                                                                <?= isset($dt['keluar']) ? Date('H:i', $end) : '-' ?>
+                                                        </td>
+                                                    </tr>
+                                                    <?php
+                                                        }
+                                                    ?>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
