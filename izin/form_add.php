@@ -106,7 +106,7 @@ $kodeizin = $huruf . sprintf("%03s", $urutan);
                                         <tr>
                                             <td class="text-center">
                                                 <?= Date('d-m-Y', strtotime($data['tanggal_mulai'])) ?></td>
-                                            <td class="text-center"><?php echo $data['lama'] ?> Hari</td>
+                                            <td class="text-center"><?php echo $data['lama'] ?></td>
                                             <td class="text-center"><?php echo $data['type'] ?></td>
                                             <?php
                                             if ($data['status'] == 'On Progress') {

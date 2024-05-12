@@ -21,11 +21,11 @@
                 <div class="card-body">
                     <div class="text-center mb-5">
                         <img src="assets/images/logo.png" height="80" class='mb-4'>
-                        <h3>Silakan Masuk</h3>
+                        <h3 class="text-white">Silakan Masuk</h3>
                     </div>
                     <form action="form_login_user.php" method="POST">
                         <div class="form-group position-relative has-icon-left">
-                            <label for="nip">NIP</label>
+                            <label for="nip" class="text-white">NIP</label>
                             <div class="position-relative">
                                 <input type="number" name="nip" class="form-control" id="nip">
                                 <div class="form-control-icon">
@@ -35,7 +35,7 @@
                         </div>
                         <div class="form-group position-relative has-icon-left">
                             <div class="clearfix">
-                                <label for="telepon">Telepon</label>
+                                <label for="telepon" class="text-white">Telepon</label>
                             </div>
                             <div class="position-relative">
                                 <input type="number" name="telepon" class="form-control" id="telepon">
