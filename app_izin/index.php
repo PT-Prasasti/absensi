@@ -39,7 +39,16 @@
                                             <td class="text-center"><?= Date('d-m-Y', strtotime($data['tanggal_akhir'])) ?></td>
                                             <td class="text-center"><?php echo $data['lama'] ?> Hari</td>
                                             <td class="text-center"><?php echo $data['type'] ?></td>
-                                            <td class="text-center"><?php echo $data[''] ?></td>
+                                            <td class="text-center">
+                                                <?php  
+                                                if (!empty($data['bukti_sakit'])) {
+                                                    $dirBuktiSakit = '../bukti_sakit/' . $data['bukti_sakit'];
+                                                }
+                                                ?>
+                                                <a href="<?= $dirBuktiSakit ?>" target="_blank">
+                                                <i data-feather="eye" width="20"></i> 
+                                                Show</a>
+                                            </td>
                                             <?php
                                                 if($_SESSION['role'] == 'manager') {
                                             ?>

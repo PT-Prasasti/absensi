@@ -2,8 +2,9 @@
 include '../koneksi.php';
 
 $kode_izin          = $_POST['kode_izin'];
-
 $nip                = $_POST['nip'];
+var_dump($nip);
+die;
 $tanggal_mulai      = $_POST['tanggal_mulai'];
 $tanggal_akhir      = $_POST['tanggal_akhir'];
 $lama               = $_POST['lama'];
