@@ -97,8 +97,10 @@
                                                     <?php
                                                         if($data['status'] == 'On Progress'){
                                                             echo '<td class="text-center"><span class="badge bg-warning">On Progress</span></td>';
-                                                        } else if($data['status'] == 'Approve'){
+                                                        } else if($data['status'] == 'Approve HOD'){
                                                             echo '<td class="text-center"><span class="badge bg-success">Approve</span></td>';
+                                                        } else if($data['status'] == 'Done'){
+                                                            echo '<td class="text-center"><span class="badge bg-danger">Done</span></td>';
                                                         } else if($data['status'] == 'Declined'){
                                                             echo '<td class="text-center"><span class="badge bg-danger">Declined</span></td>';
                                                         } 

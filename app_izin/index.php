@@ -6,7 +6,7 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header d-flex justify-content-between align-items-center">
-                            <h4 class="card-title">Approval Cuti Karyawan</h4>
+                            <h4 class="card-title">Approval Izin Karyawan</h4>
                         </div>
                         <div class="card-body px-0 pb-0">
                             <div class="table-responsive">
@@ -17,13 +17,15 @@
                                             <th class="text-center">Nama Karyawan</th>
                                             <th class="text-center">Tanggal Mulai</th>
                                             <th class="text-center">Tanggal Akhir</th>
-                                            <th class="text-center">Lama Cuti</th>
+                                            <th class="text-center">Lama Izin</th>
+                                            <th class="text-center">Keterangan</th>
+                                            <th class="text-center">File</th>
                                             <th class="text-center">Status</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                     <?php
-                                        $query ="select * from cuti join karyawan on cuti.`nip`= karyawan.`nip`";
+                                        $query ="select * from izin join karyawan on izin.`nip`= karyawan.`nip` ";
                                         $hasil = mysqli_query($koneksi, $query);
                                         $status = array('On Progress', 'Approve HOD','Declined');
                                         $statuss = array('Approve HOD', 'Approve Manager','Declined');
@@ -36,6 +38,8 @@
                                             <td class="text-center"><?= Date('d-m-Y', strtotime($data['tanggal_mulai'])) ?></td>
                                             <td class="text-center"><?= Date('d-m-Y', strtotime($data['tanggal_akhir'])) ?></td>
                                             <td class="text-center"><?php echo $data['lama'] ?> Hari</td>
+                                            <td class="text-center"><?php echo $data['type'] ?></td>
+                                            <td class="text-center"><?php echo $data[''] ?></td>
                                             <?php
                                                 if($_SESSION['role'] == 'manager') {
                                             ?>
@@ -111,7 +115,7 @@
 
                                         <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                             <div class="modal-dialog modal-dialog-centered modal-dialog-centered modal-dialog-scrollable" role="document">
-                                                <form method="post" action="query_edit_hod.php" enctype="multipart/form-data">
+                                                <form method="post" action="query_edit.php" enctype="multipart/form-data">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
                                                             <h5 class="modal-title" id="exampleModalCenterTitle">Approval Status Cuti</h5>
@@ -120,7 +124,7 @@
                                                             </button>
                                                         </div>
                                                         <div class="modal-body">
-                                                            <input type="text" class="form-control" name="kode_cuti" value="<?php echo $data['kode_cuti']; ?>" hidden>
+                                                            <input type="text" class="form-control" name="kode_izin" value="<?php echo $data['kode_izin']; ?>" hidden>
                                                             
                                                             <label for="" class="form-label">Select Status</label>
                                                             <fieldset class="form-group">
