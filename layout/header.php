@@ -95,18 +95,39 @@
                                 <span>Data Izin Karyawan</span>
                             </a>
                             <ul class="submenu">
-                                <li>
-                                    <a href="../app_izin/index.php">App Pengajuan Izin</a>
-                                </li>
-                                
-                                <li>
-                                    <a href="../app_izin/list.php">List Izin</a>
-                                </li>
+                                <?php
+                                    if($_SESSION['role'] == 'hod' || $_SESSION['role'] == 'manager') {
+                                ?>
+                                    <li>
+                                        <a href="../app_izin/index.php">App Pengajuan Izin</a>
+                                    </li>
+                                    
+                                    <li>
+                                        <a href="../app_izin/list.php">List Izin</a>
+                                    </li>
+                                <?php
+                                    }
+                                ?>
+                                <?php
+                                    if($_SESSION['role'] == 'hrd') {
+                                ?>  
+                                    <li>
+                                        <a href="../app_izin/list.php">List Izin</a>
+                                    </li>
+                                <?php
+                                    }
+                                ?>
                             </ul>
                         </li>
 
 
                         <li class="sidebar-title">Data Internal</li>
+                        <li class="sidebar-item">
+                            <a href="../data_tanggal/index.php" class='sidebar-link'>
+                                <i data-feather="file-text" width="20"></i> 
+                                <span>Data Tanggal Merah</span>
+                            </a>
+                        </li>
                         <li class="sidebar-item">
                             <a href="../data_karyawan/index.php" class='sidebar-link'>
                                 <i data-feather="users" width="20"></i> 
@@ -119,6 +140,7 @@
                                 <span>Data Jabatan / Posisi</span>
                             </a>
                         </li>
+                        
                         <!-- <li class="sidebar-item">
                             <a href="index.html" class='sidebar-link'>
                                 <i data-feather="settings" width="20"></i> 
