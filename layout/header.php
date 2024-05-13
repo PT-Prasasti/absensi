@@ -95,13 +95,28 @@
                                 <span>Data Izin Karyawan</span>
                             </a>
                             <ul class="submenu">
-                                <li>
-                                    <a href="../app_izin/index.php">App Pengajuan Izin</a>
-                                </li>
-                                
-                                <li>
-                                    <a href="../app_izin/list.php">List Izin</a>
-                                </li>
+                                <?php
+                                    if($_SESSION['role'] == 'hod' || $_SESSION['role'] == 'manager') {
+                                ?>
+                                    <li>
+                                        <a href="../app_izin/index.php">App Pengajuan Izin</a>
+                                    </li>
+                                    
+                                    <li>
+                                        <a href="../app_izin/list.php">List Izin</a>
+                                    </li>
+                                <?php
+                                    }
+                                ?>
+                                <?php
+                                    if($_SESSION['role'] == 'hrd') {
+                                ?>  
+                                    <li>
+                                        <a href="../app_izin/list.php">List Izin</a>
+                                    </li>
+                                <?php
+                                    }
+                                ?>
                             </ul>
                         </li>
 
