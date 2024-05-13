@@ -45,7 +45,7 @@
                                 </thead>
                                 <tbody>
                                     <?php
-                                    $query = "SELECT * FROM karyawan";
+                                    $query = "SELECT * FROM karyawan WHERE sisa_cuti !='';";
                                     $hasil = mysqli_query($koneksi, $query);
                                     $no = 0;
                                     while ($data = mysqli_fetch_array($hasil)) {
@@ -65,10 +65,10 @@
                 </div>
             </div>
 
-            <div class="col-md-8">
+            <div class="col-md-4">
                 <div class="card">
                     <div class="card-header d-flex justify-content-between align-items-center">
-                        <h4 class="card-title">Jumlah Izin Karyawan</h4>
+                        <h4 class="card-title">Jumlah Izin Karyawan - <?php echo date('M'); ?></h4>
                     </div>
                     <div class="card-body px-0 pb-0">
                         <div class="table-responsive">
@@ -86,7 +86,48 @@
                                     $query = "SELECT karyawan.nama,
                                      SUM(CASE WHEN izin.type = 'Izin' THEN 1 ELSE 0 END) AS jumlah_izin,
                                      SUM(CASE WHEN izin.type = 'Sakit' THEN 1 ELSE 0 END) AS jumlah_sakit
-                                    FROM karyawan LEFT JOIN izin ON karyawan.nip = izin.nip GROUP BY karyawan.nama";
+                                    FROM karyawan LEFT JOIN izin ON karyawan.nip = izin.nip WHERE MONTH(izin.tanggal_mulai)=MONTH(CURRENT_DATE) GROUP BY karyawan.nama ";
+                                    $hasil = mysqli_query($koneksi, $query);
+                                    while ($data = mysqli_fetch_assoc($hasil)) {
+                                    ?>
+                                        <tr>
+                                            <td><?= $data['nama'] ?></td>
+                                            <td class="text-center"><?= $data['jumlah_izin'] ?></td>
+                                            <td class="text-center"><?= $data['jumlah_sakit'] ?></td>
+                                            <td class="text-center">-</td>
+                                        </tr>
+                                    <?php
+                                    }
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h4 class="card-title">Jumlah Izin Karyawan - <?php echo date('Y'); ?></h4>
+                    </div>
+                    <div class="card-body px-0 pb-0">
+                        <div class="table-responsive">
+                            <table class="table mb-0" id="">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">Nama Karyawan</th>
+                                        <th class="text-center">Izin</th>
+                                        <th class="text-center">Sakit</th>
+                                        <th class="text-center">Alfa</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    $query = "SELECT karyawan.nama,
+                                     SUM(CASE WHEN izin.type = 'Izin' THEN 1 ELSE 0 END) AS jumlah_izin,
+                                     SUM(CASE WHEN izin.type = 'Sakit' THEN 1 ELSE 0 END) AS jumlah_sakit
+                                    FROM karyawan LEFT JOIN izin ON karyawan.nip = izin.nip WHERE YEAR(izin.tanggal_mulai)=YEAR(CURRENT_DATE) GROUP BY karyawan.nama";
                                     $hasil = mysqli_query($koneksi, $query);
                                     while ($data = mysqli_fetch_assoc($hasil)) {
                                     ?>

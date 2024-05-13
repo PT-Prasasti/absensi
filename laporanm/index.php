@@ -6,7 +6,7 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header d-flex justify-content-between align-items-center">
-                            <h4 class="card-title">Laporan Absen Karyawan Mingguan</h4>
+                            <h4 class="card-title">Laporan Absen Karyawan Bulan <?php echo date('M'); ?></h4>
                         </div>
                         <div class="card-body px-0 pb-0">
                             <div class="table-responsive">

@@ -74,7 +74,7 @@ $nip = $_SESSION['nip'];
                                                     </thead>
                                                     <tbody>
                                                         <?php
-                                                        $query = "SELECT absen.id,absen.nip,absen.tgl,absen.status,absen.keterangan,karyawan.nama,karyawan.telepon,jabatan.nama_jabatan,absen.waktu_in AS masuk,absen.waktu_out AS keluar FROM absen JOIN karyawan ON absen.nip=karyawan.nip JOIN jabatan ON karyawan.kode_jabatan=jabatan.kode_jabatan WHERE MONTH(absen.tgl)=MONTH(CURRENT_DATE) AND absen.nip='$nip'";
+                                                        $query = "SELECT absen.id,absen.nip,absen.tgl,absen.status,absen.keterangan,karyawan.nama,karyawan.telepon,jabatan.nama_jabatan,absen.waktu_in AS masuk,absen.waktu_out AS keluar FROM absen JOIN karyawan ON absen.nip=karyawan.nip JOIN jabatan ON karyawan.kode_jabatan=jabatan.kode_jabatan WHERE MONTH(absen.tgl)=MONTH(CURRENT_DATE) AND absen.nip='$nip' ORDER BY absen.tgl ASC";
                                                         $hasil = mysqli_query($koneksi, $query);
                                                         while ($dt = mysqli_fetch_array($hasil)) {
                                                         ?>
