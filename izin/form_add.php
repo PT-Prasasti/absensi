@@ -147,11 +147,15 @@ $kodeizin = $huruf . sprintf("%03s", $urutan);
             const today = new Date().toISOString().split('T')[0];
             start_date.value = today;
             end_date.value = today;
-            
+
             start_date.disabled = true;
             end_date.disabled = true;
             bukti_sakit.classList.remove('hidden');
         } else {
+            start_date.value = '';
+            end_date.value = '';
+            start_date.disabled = false;
+            end_date.disabled = false;
             bukti_sakit.classList.add('hidden');
         }
     });
