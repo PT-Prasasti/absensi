@@ -22,7 +22,7 @@ class Mailer
         <body>
             <div style='font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;'>
                 <div style='background-color: #f4f4f4; padding: 20px;'>
-                    <h2 style='color: #333;'>Pemberitahuan Pengajuan Cuti / Izin</h2>
+                    <h2 style='color: #333;'>Pemberitahuan Pengajuan Izin</h2>
                     <p style='color: #666;'>Pengajuan ini menunggu persetujuan anda.</p>
                     <hr>
                     <h3 style='color: #333;'>Detail Pengajuan:</h3>
@@ -30,11 +30,11 @@ class Mailer
                         <li>Nama: $nama</li>
                         <li>Tanggal Mulai: $start</li>
                         <li>Tanggal Akhir: $end</li>
-                        <li>Lama Cuti: $lama hari</li>
+                        <li>Lama Izin: $lama hari</li>
                         <li>Alasan: $type</li>
                         <li>Keterangan: $keterangan</li>
                     </ul>
-                    <p style='color: #666;'>Silakan konfirmasi pengajuan cuti / izin pada aplikasi.</p>
+                    <p style='color: #666;'>Silakan konfirmasi pengajuan cuti izin pada aplikasi.</p>
                     <a href='$link' style='display: inline-block; padding: 10px 20px; background-color: #007bff; color: #fff; text-decoration: none; border-radius: 5px;'>Konfirmasi</a>
                 </div>
             </div>

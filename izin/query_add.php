@@ -25,15 +25,15 @@ if ($alasan == 'Izin') {
             $subject = "Pengajuan Izin dari $nama. Segera lakukan konfirmasi.";
             $mailer = new Mailer($subject, $link, $nama, $lama, $start, $end, $keterangan, $alasan);
             if ($mailer) {
-                echo "<script>alert('Data Pengajuan Izin Terkirim');window.location='../menu.php'</script>";
+                echo "<script>alert('Data Pengajuan Izin Terkirim');window.location='form_add.php'</script>";
             } else {
                 echo "smtp gagal";
             }
         } else {
-            echo "<script>alert('Terjadi kesalahan saat menyimpan data izin. Silakan coba lagi.');window.location='../menu.php'</script>";
+            echo "<script>alert('Terjadi kesalahan saat menyimpan data izin. Silakan coba lagi.');window.location='form_add.php'</script>";
         }
     } else {
-        echo "<script>alert('Pengajuan izin harus dilakukan minimal 3 hari sebelum tanggal mulai izin.');window.location='../menu.php'</script>";
+        echo "<script>alert('Pengajuan izin harus dilakukan minimal 3 hari sebelum tanggal mulai izin.');window.location='form_add.php'</script>";
     }
 } else {
     // Upload file
@@ -54,17 +54,17 @@ if ($alasan == 'Izin') {
                 $subject = "Pengajuan Izin dari $nama. Segera lakukan konfirmasi.";
                 $mailer = new Mailer($subject, $link, $nama, $lama, $start, $end, $keterangan, $alasan);
                 if ($mailer) {
-                    echo "<script>alert('Data Pengajuan Izin Terkirim');window.location='../menu.php'</script>";
+                    echo "<script>alert('Data Pengajuan Izin Terkirim');window.location='form_add.php'</script>";
                 } else {
                     echo "smtp gagal";
                 }
             } else {
-                echo "<script>alert('Terjadi kesalahan saat menyimpan data izin sakit. Silakan coba lagi.');window.location='index.php?nip=$nip'</script>";
+                echo "<script>alert('Terjadi kesalahan saat menyimpan data izin sakit. Silakan coba lagi.');window.location='form_add.php?nip=$nip'</script>";
             }
         } else {
-            echo "<script>alert('Sorry, there was an error uploading your file.');window.location='index.php?nip=$nip'</script>";
+            echo "<script>alert('Sorry, there was an error uploading your file.');window.location='form_add.php?nip=$nip'</script>";
         }
     } else {
-        echo "<script>alert('Berkas bukti sakit tidak terunggah.');window.location='index.php?nip=$nip'</script>";
+        echo "<script>alert('Berkas bukti sakit tidak terunggah.');window.location='form_add.php?nip=$nip'</script>";
     }
 }

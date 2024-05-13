@@ -25,7 +25,7 @@
                                     </thead>
                                     <tbody>
                                     <?php
-                                        $query ="select * from izin join karyawan on izin.`nip`= karyawan.`nip` ";
+                                        $query ="select * from izin join karyawan on izin.`nip`= karyawan.`nip` WHERE izin.`status`='On Progress'";
                                         $hasil = mysqli_query($koneksi, $query);
                                         $status = array('On Progress', 'Approve HOD','Declined');
                                         $statuss = array('Approve HOD', 'Approve Manager','Declined');
@@ -39,16 +39,7 @@
                                             <td class="text-center"><?= Date('d-m-Y', strtotime($data['tanggal_akhir'])) ?></td>
                                             <td class="text-center"><?php echo $data['lama'] ?> Hari</td>
                                             <td class="text-center"><?php echo $data['type'] ?></td>
-                                            <td class="text-center">
-                                                <?php  
-                                                if (!empty($data['bukti_sakit'])) {
-                                                    $dirBuktiSakit = '../bukti_sakit/' . $data['bukti_sakit'];
-                                                }
-                                                ?>
-                                                <a href="<?= $dirBuktiSakit ?>" target="_blank">
-                                                <i data-feather="eye" width="20"></i> 
-                                                Show</a>
-                                            </td>
+                                            <td class="text-center"><?php echo $data[''] ?></td>
                                             <?php
                                                 if($_SESSION['role'] == 'manager') {
                                             ?>
