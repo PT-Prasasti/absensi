@@ -28,6 +28,15 @@ $kodeizin = $huruf . sprintf("%03s", $urutan);
                 </div>
                 <form action="query_add.php" method="POST" enctype="multipart/form-data">
                     <div class="form-group position-relative has-icon-left">
+                        <div class="position-relative">
+                            <select name="type" id="alasan" class="form-select" required>
+                                <option value="0" disabled selected>- Pilih Alasan -</option>
+                                <option value="Izin">Izin</option>
+                                <option value="Sakit">Sakit</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group position-relative has-icon-left">
                         <label for="" class="form-label text-white">Tanggal Izin / Dari - Sampai</label>
                         <div class="position-relative row">
                             <div class="col-sm-12 mb-2">
@@ -48,15 +57,6 @@ $kodeizin = $huruf . sprintf("%03s", $urutan);
                             <input type="text" name="keterangan" class="form-control" placeholder="Keterangan" required>
                         </div>
                     </div>
-                    <div class="form-group position-relative has-icon-left">
-                        <div class="position-relative">
-                            <select name="type" id="alasan" class="form-select" required>
-                                <option value="0" disabled selected>- Pilih Alasan -</option>
-                                <option value="Izin">Izin</option>
-                                <option value="Sakit">Sakit</option>
-                            </select>
-                        </div>
-                    </div>
                     <div class="form-group position-relative has-icon-left hidden" id="bukti_sakit">
                         <div class="position-relative">
                             <input class="form-control" type="file" name="bukti_sakit">
@@ -64,12 +64,18 @@ $kodeizin = $huruf . sprintf("%03s", $urutan);
                     </div>
 
                     <div class="mb-3" hidden>
-                        <input type="text" class="form-control" name="foto_in" value="<?php echo $row['foto_in']; ?>" readonly required>
-                        <input type="text" class="form-control" name="foto_out" value="<?php echo $row['foto_out']; ?>" readonly required>
-                        <input type="text" class="form-control" name="telepon" placeholder="telepon" value="<?php echo $row['telepon']; ?>" required readonly>
-                        <input type="text" class="form-control" name="nama_jabatan" placeholder="nama_jabatan" value="<?php echo $row['nama_jabatan']; ?>" required readonly>
-                        <input type="text" class="form-control" name="nama" placeholder="Nama" value="<?php echo $row['nama']; ?>" required readonly>
-                        <input type="text" class="form-control" name="nip" value="<?php echo $row['nip']; ?>" readonly required>
+                        <input type="text" class="form-control" name="foto_in" value="<?php echo $row['foto_in']; ?>"
+                            readonly required>
+                        <input type="text" class="form-control" name="foto_out" value="<?php echo $row['foto_out']; ?>"
+                            readonly required>
+                        <input type="text" class="form-control" name="telepon" placeholder="telepon"
+                            value="<?php echo $row['telepon']; ?>" required readonly>
+                        <input type="text" class="form-control" name="nama_jabatan" placeholder="nama_jabatan"
+                            value="<?php echo $row['nama_jabatan']; ?>" required readonly>
+                        <input type="text" class="form-control" name="nama" placeholder="Nama"
+                            value="<?php echo $row['nama']; ?>" required readonly>
+                        <input type="text" class="form-control" name="nip" value="<?php echo $row['nip']; ?>" readonly
+                            required>
                         <input type="text" class="form-control" name="kode_izin" value="<?php echo $kodeizin ?>">
                     </div>
 
@@ -120,7 +126,7 @@ $kodeizin = $huruf . sprintf("%03s", $urutan);
                                         </tr>
 
                                     </tbody>
-                                <?php } ?>
+                                    <?php } ?>
                                 </table>
                             </div>
                         </div>
@@ -133,10 +139,17 @@ $kodeizin = $huruf . sprintf("%03s", $urutan);
 <script>
     let type = document.getElementById('alasan');
     let bukti_sakit = document.getElementById('bukti_sakit');
+    let start_date = document.getElementsByName('tanggal_mulai')[0];
+    let end_date = document.getElementsByName('tanggal_akhir')[0];
 
-    type.addEventListener("change", function() {
-        console.log(this.value);
+    type.addEventListener("change", function () {
         if (this.value == 'Sakit') {
+            const today = new Date().toISOString().split('T')[0];
+            start_date.value = today;
+            end_date.value = today;
+            
+            start_date.disabled = true;
+            end_date.disabled = true;
             bukti_sakit.classList.remove('hidden');
         } else {
             bukti_sakit.classList.add('hidden');
