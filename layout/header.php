@@ -53,23 +53,56 @@
                         </li>
 
                         <li class="sidebar-title">Menu Approval</li>
-                        <li class="sidebar-item">
+                        <!-- <li class="sidebar-item">
                             <a href="../approve/index.php" class='sidebar-link'>
                                 <i data-feather="check" width="20"></i> 
                                 <span>Approval Revisi Absensi</span>
                             </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a href="../app_cuti/index.php" class='sidebar-link'>
-                                <i data-feather="check" width="20"></i> 
-                                <span>Approval Pengajuan Cuti</span>
+                        </li> -->
+                        <li class="sidebar-item  has-sub">
+                            <a href="#" class="sidebar-link">
+                                <i data-feather="check" width="20"></i>  
+                                <span>Data Cuti Karyawan</span>
                             </a>
+                            <ul class="submenu">
+                                <?php
+                                    if($_SESSION['role'] == 'hod' || $_SESSION['role'] == 'manager') {
+                                ?>
+                                    <li>
+                                        <a href="../app_cuti/index.php">App Pengajuan Cuti</a>
+                                    </li>
+                                    
+                                    <li>
+                                        <a href="../app_cuti/list.php">List Cuti</a>
+                                    </li>
+                                <?php
+                                    }
+                                ?>
+                                <?php
+                                    if($_SESSION['role'] == 'hrd') {
+                                ?>  
+                                    <li>
+                                        <a href="../app_cuti/list.php">List Cuti</a>
+                                    </li>
+                                <?php
+                                    }
+                                ?>
+                            </ul>
                         </li>
-                        <li class="sidebar-item">
-                            <a href="../app_izin/index.php" class='sidebar-link'>
-                                <i data-feather="check" width="20"></i> 
-                                <span>Approval Pengajuan Izin</span>
+                        <li class="sidebar-item  has-sub">
+                            <a href="#" class="sidebar-link">
+                                <i data-feather="check" width="20"></i>  
+                                <span>Data Izin Karyawan</span>
                             </a>
+                            <ul class="submenu">
+                                <li>
+                                    <a href="../app_izin/index.php">App Pengajuan Izin</a>
+                                </li>
+                                
+                                <li>
+                                    <a href="../app_izin/list.php">List Izin</a>
+                                </li>
+                            </ul>
                         </li>
 
 

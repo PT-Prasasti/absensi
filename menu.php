@@ -34,12 +34,12 @@ $nip = $_SESSION['nip'];
                             </div>
                             <div class="row">
                                 <div class="col-sm-12">
-                                    <a href="absen.php" class="btn btn-block mb-2 btn-primary"><b>- Absen -</b></a>
+                                    <a href="absen.php" class="btn btn-block mb-2 btn-success"><b>- Absen -</b></a>
                                 </div>
-                                <div class="col-sm-12">
+                                <!-- <div class="col-sm-12">
                                     <a href="revisi/index_user.php" class="btn btn-block mb-2 btn-success"><b>- Revisi
                                             Jam Absen -</b></a>
-                                </div>
+                                </div> -->
                                 <div class="col-sm-12">
                                     <a href="cuti/form_add_user.php" class="btn btn-block mb-2 btn-warning"><b>-
                                             Pengajuan Cuti -</b></a>
