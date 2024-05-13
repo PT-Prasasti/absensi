@@ -5,14 +5,15 @@ include '../mailer.php';
 $kode_izin          = $_POST['kode_izin'];
 $nip                = $_POST['nip'];
 $nama               = $_POST['nama'];
-$tanggal_mulai      = $_POST['tanggal_mulai'];
-$tanggal_akhir      = $_POST['tanggal_akhir'];
+$tanggal_mulai = date('Y-m-d', strtotime($_POST['tanggal_mulai']));
+$tanggal_akhir = date('Y-m-d', strtotime($_POST['tanggal_akhir']));
 $lama               = $_POST['lama'];
 $keterangan         = $_POST['keterangan'];
 $alasan             = $_POST['type'];
 $status             = 'On Progress';
 $start = date('Y-m-d', strtotime($tanggal_mulai));
 $end = date('Y-m-d', strtotime($tanggal_akhir));
+$emailTo = "auliarasyidalzahrawi@gmail.com"; // HOD
 
 $today = date('Y-m-d');
 $threeDaysBefore = date('Y-m-d', strtotime('-3 days', strtotime($tanggal_mulai)));
@@ -23,7 +24,7 @@ if ($alasan == 'Izin') {
         if (mysqli_query($koneksi, $query)) {
             $link = 'https://absen.pt-prasasti.com/app_izin/index.php';
             $subject = "Pengajuan Izin dari $nama. Segera lakukan konfirmasi.";
-            $mailer = new Mailer($subject, $link, $nama, $lama, $start, $end, $keterangan, $alasan);
+            $mailer = new Mailer($subject, $link, $nama, $lama, $start, $end, $keterangan, $alasan, $context="Izin", $emailTo);
             if ($mailer) {
                 echo "<script>alert('Data Pengajuan Izin Terkirim');window.location='form_add.php'</script>";
             } else {
@@ -52,7 +53,7 @@ if ($alasan == 'Izin') {
             if (mysqli_query($koneksi, $query)) {
                 $link = 'https://absen.pt-prasasti.com/app_izin/index.php';
                 $subject = "Pengajuan Izin dari $nama. Segera lakukan konfirmasi.";
-                $mailer = new Mailer($subject, $link, $nama, $lama, $start, $end, $keterangan, $alasan);
+                $mailer = new Mailer($subject, $link, $nama, $lama, $start, $end, $keterangan, $alasan, $context="Izin", $emailTo);
                 if ($mailer) {
                     echo "<script>alert('Data Pengajuan Izin Terkirim');window.location='form_add.php'</script>";
                 } else {

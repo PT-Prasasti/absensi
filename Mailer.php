@@ -8,33 +8,32 @@ $mail = new PHPMailer(true);
 
 class Mailer
 {
-    public function __construct($subject, $link, $nama, $lama, $start, $end, $keterangan, $type)
+    public function __construct($subject, $link, $nama, $lama, $start, $end, $keterangan, $type, $context, $emailTo)
     {
         $body = "<!DOCTYPE html>
         <html lang='en'>
-        
         <head>
             <meta charset='UTF-8'>
             <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-            <title>Pengajuan Cuti / Izin Eprass</title>
+            <title>Pengajuan $context Eprass</title>
         </head>
-        
+
         <body>
             <div style='font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;'>
                 <div style='background-color: #f4f4f4; padding: 20px;'>
-                    <h2 style='color: #333;'>Pemberitahuan Pengajuan Izin</h2>
-                    <p style='color: #666;'>Pengajuan ini menunggu persetujuan anda.</p>
+                    <h2 style='color: #333; text-align: center;'>Pemberitahuan Pengajuan $context</h2>
+                    <p style='color: #666; text-align: center;'>Pengajuan ini menunggu persetujuan anda.</p>
                     <hr>
                     <h3 style='color: #333;'>Detail Pengajuan:</h3>
                     <ul>
                         <li>Nama: $nama</li>
                         <li>Tanggal Mulai: $start</li>
                         <li>Tanggal Akhir: $end</li>
-                        <li>Lama Izin: $lama hari</li>
+                        <li>Lama $context: $lama hari</li>
                         <li>Alasan: $type</li>
                         <li>Keterangan: $keterangan</li>
                     </ul>
-                    <p style='color: #666;'>Silakan konfirmasi pengajuan cuti izin pada aplikasi.</p>
+                    <p style='color: #666;'>Silakan konfirmasi pengajuan $context pada aplikasi.</p>
                     <a href='$link' style='display: inline-block; padding: 10px 20px; background-color: #007bff; color: #fff; text-decoration: none; border-radius: 5px;'>Konfirmasi</a>
                 </div>
             </div>
@@ -45,24 +44,24 @@ class Mailer
         $mail = new PHPMailer(true);
         try {
             //Server settings
-            $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
-            $mail->isSMTP();                                            //Send using SMTP
-            $mail->Host       = 'mail.pt-prasasti.com';                     //Set the SMTP server to send through
-            $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-            $mail->Username   = 'absen@pt-prasasti.com';                     //SMTP username
-            $mail->Password   = 'absensi123';                     //SMTP password
-            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;          //Enable implicit TLS encryption
-            $mail->Port       = 587;              //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
-        
+            $mail->SMTPDebug = SMTP::DEBUG_CLIENT;
+            $mail->isSMTP();
+            $mail->Host       = 'mail.pt-prasasti.com';
+            $mail->SMTPAuth   = true;
+            $mail->Username   = 'absen@pt-prasasti.com';
+            $mail->Password   = 'absensi123';
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+            $mail->Port       = 587;
+
             //Recipients
             $mail->setFrom('absen@pt-prasasti.com', 'Absen Eprass');
-            $mail->addAddress('rifan@pt-prasasti.com', 'HOD & Manager');
-        
+            $mail->addAddress($emailTo, 'HOD & Manager');
+            $mail->addAddress('damnroshit@gmail.com', 'HRD');
+
             //Content
             $mail->isHTML(true);
             $mail->Subject = $subject;
             $mail->Body    = $body;
-            $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
         
             $mail->send();
             echo 'Message has been sent';

@@ -40,10 +40,10 @@ $kodeizin = $huruf . sprintf("%03s", $urutan);
                         <label for="" class="form-label text-white">Tanggal Izin / Dari - Sampai</label>
                         <div class="position-relative row">
                             <div class="col-sm-12 mb-2">
-                                <input type="date" name="tanggal_mulai" class="form-control">
+                                <input type="date" class="form-control" id="tanggal_mulai">
                             </div>
                             <div class="col-sm-12">
-                                <input type="date" name="tanggal_akhir" class="form-control">
+                                <input type="date" class="form-control" id="tanggal_akhir">
                             </div>
                         </div>
                     </div>
@@ -77,6 +77,8 @@ $kodeizin = $huruf . sprintf("%03s", $urutan);
                         <input type="text" class="form-control" name="nip" value="<?php echo $row['nip']; ?>" readonly
                             required>
                         <input type="text" class="form-control" name="kode_izin" value="<?php echo $kodeizin ?>">
+                        <input type="hidden" name="tanggal_mulai" id="hidden_tanggal_mulai">
+                        <input type="hidden" name="tanggal_akhir" id="hidden_tanggal_akhir">
                     </div>
 
                     <div class="clearfix mt-3 mb-3">
@@ -139,14 +141,17 @@ $kodeizin = $huruf . sprintf("%03s", $urutan);
 <script>
     let type = document.getElementById('alasan');
     let bukti_sakit = document.getElementById('bukti_sakit');
-    let start_date = document.getElementsByName('tanggal_mulai')[0];
-    let end_date = document.getElementsByName('tanggal_akhir')[0];
+    let start_date = document.getElementById('tanggal_mulai');
+    let end_date = document.getElementById('tanggal_akhir');
 
     type.addEventListener("change", function () {
         if (this.value == 'Sakit') {
-            const today = new Date().toISOString().split('T')[0];
-            start_date.value = today;
-            end_date.value = today;
+            const now = new Date().toISOString().split('T')[0];
+            console.log(now);
+            start_date.value = now;
+            end_date.value = now;
+            document.getElementById('hidden_tanggal_mulai').value = now;
+            document.getElementById('hidden_tanggal_akhir').value = now;
 
             start_date.disabled = true;
             end_date.disabled = true;
