@@ -56,7 +56,7 @@ class Mailer
             //Recipients
             $mail->setFrom('absen@pt-prasasti.com', 'Absen Eprass');
             $mail->addAddress($emailTo, 'HOD & Manager');
-            $mail->addAddress('damnroshit@gmail.com', 'HRD');
+            $mail->addAddress('rifan@pt-prasasti.com', 'HRD');
 
             //Content
             $mail->isHTML(true);
