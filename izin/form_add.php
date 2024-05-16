@@ -117,13 +117,15 @@ $kodeizin = $huruf . sprintf("%03s", $urutan);
                                             <td class="text-center"><?php echo $data['lama'] ?></td>
                                             <td class="text-center"><?php echo $data['type'] ?></td>
                                             <?php
-                                            if ($data['status'] == 'On Progress') {
-                                                echo '<td class="text-center"><span class="badge bg-warning">On Progress</span></td>';
-                                            } else if ($data['status'] == 'Approve') {
-                                                echo '<td class="text-center"><span class="badge bg-success">Approve</span></td>';
-                                            } else if ($data['status'] == 'Declined') {
-                                                echo '<td class="text-center"><span class="badge bg-danger">Declined</span></td>';
-                                            }
+                                                if($data['status'] == 'On Progress'){
+                                                    echo '<td class="text-center"><span class="badge bg-warning">On Progress</span></td>';
+                                                } else if($data['status'] == 'Approve HOD'){
+                                                    echo '<td class="text-center"><span class="badge bg-success">Approve HOD</span></td>';
+                                                } else if($data['status'] == 'Approve Manager'){
+                                                    echo '<td class="text-center"><span class="badge bg-success">Done</span></td>';
+                                                } else if($data['status'] == 'Declined'){
+                                                    echo '<td class="text-center"><span class="badge bg-danger">Declined</span></td>';
+                                                } 
                                             ?>
                                         </tr>
 

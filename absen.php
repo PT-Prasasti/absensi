@@ -87,7 +87,26 @@
                                                     <?php
                                                         $query="SELECT absen.id,absen.nip,absen.tgl,absen.status,absen.keterangan,karyawan.nama,karyawan.telepon,jabatan.nama_jabatan,absen.waktu_in AS masuk,absen.waktu_out AS keluar FROM absen JOIN karyawan ON absen.nip=karyawan.nip JOIN jabatan ON karyawan.kode_jabatan=jabatan.kode_jabatan WHERE absen.tgl=CURRENT_DATE AND absen.nip='$nip' ORDER BY absen.tgl ASC";
                                                         $hasil=mysqli_query($koneksi, $query);
-                                                        while($dt=mysqli_fetch_array($hasil)){
+                                                            while ($data = mysqli_fetch_array($hasil)) {
+                                                                $jam = 0;
+                                                                $telat = 0;
+                                                                $start = strtotime($data['masuk']);
+                                                                $end = strtotime($data['keluar']);
+                                                                $hours = ($end - $start) / 3600;
+                                                                if ($hours - floor($hours) >= 0.5) {
+                                                                    $jam += ceil($hours);
+                                                                } else {
+                                                                    $jam += round($hours);
+                                                                }
+                                                                $tgl = $data['tgl'];
+                                                                $strt = strtotime($tgl . ' 08:00:00');
+                                                                $en = strtotime($data['masuk']);
+                                                                $menit = ($en - $strt) / 60;
+                                                                if ($menit - floor($menit) >= 0.5) {
+                                                                    $telat += ceil($menit);
+                                                                } else {
+                                                                    $telat += round($menit);
+                                                                }
                                                     ?>
                                                     <tr>
                                                         <td class="text-center">
@@ -98,9 +117,8 @@
                                                         <td class="text-center">
                                                                 <?= Date('H:i', $start) ?>
                                                         </td>
-                                                        <td class="text-center">
-                                                                <?= isset($dt['keluar']) ? Date('H:i', $end) : '-' ?>
-                                                        </td>
+                                                        <td class="text-center"><?= isset($data['keluar']) ? Date('H:i', $end) : '-' ?>
+                                                       
                                                     </tr>
                                                     <?php
                                                         }
