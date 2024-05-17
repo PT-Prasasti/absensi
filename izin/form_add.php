@@ -106,7 +106,7 @@ $kodeizin = $huruf . sprintf("%03s", $urutan);
                                     </thead>
                                     <tbody>
                                         <?php
-                                        $query = "select * from izin join karyawan on izin.`nip`= karyawan.`nip`";
+                                        $query = "select * from izin join karyawan on izin.`nip`= karyawan.`nip` WHERE izin.`nip` = '$nip'";
                                         $hasil = mysqli_query($koneksi, $query);
                                         while ($data = mysqli_fetch_array($hasil)) {
                                         ?>

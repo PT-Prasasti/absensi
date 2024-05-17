@@ -83,7 +83,7 @@
                                         </thead>
                                         <tbody>
                                             <?php
-                                                $query ="select * from cuti join karyawan on cuti.`nip`= karyawan.`nip`";
+                                                $query ="select * from cuti join karyawan on cuti.`nip`= karyawan.`nip` WHERE cuti.`nip` = '$nip'";
                                                 $hasil = mysqli_query($koneksi, $query);
                                                 while($data = mysqli_fetch_array($hasil))
                                                 {
