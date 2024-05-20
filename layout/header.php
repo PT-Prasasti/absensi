@@ -59,66 +59,160 @@
                                 <span>Approval Revisi Absensi</span>
                             </a>
                         </li> -->
+                        <?php
+                            if($_SESSION['role'] == 'hrd') {
+                        ?>
                         <li class="sidebar-item  has-sub">
                             <a href="#" class="sidebar-link">
                                 <i data-feather="check" width="20"></i>  
                                 <span>Data Cuti Karyawan</span>
                             </a>
                             <ul class="submenu">
-                                <?php
-                                    if($_SESSION['role'] == 'hod' || $_SESSION['role'] == 'manager') {
-                                ?>
-                                    <li>
-                                        <a href="../app_cuti/index.php">App Pengajuan Cuti</a>
-                                    </li>
-                                    
-                                    <li>
-                                        <a href="../app_cuti/list.php">List Cuti</a>
-                                    </li>
-                                <?php
-                                    }
-                                ?>
-                                <?php
-                                    if($_SESSION['role'] == 'hrd') {
-                                ?>  
-                                    <li>
-                                        <a href="../app_cuti/list.php">List Cuti</a>
-                                    </li>
-                                <?php
-                                    }
-                                ?>
+                                <li>
+                                    <a href="../app_cuti/list.php">List Cuti</a>
+                                </li>
                             </ul>
                         </li>
+                        <?php
+                            }
+                        ?>
+                         <?php
+                            if($_SESSION['role'] == 'hod') {
+                        ?>
+                        <li class="sidebar-item  has-sub">
+                            <?php
+                                $query ="SELECT COUNT(status) AS total FROM cuti WHERE status='On Progress'";
+                                $hasil = mysqli_query($koneksi, $query);
+                                while($data = mysqli_fetch_array($hasil))
+                                {
+                            ?>
+                            <a href="#" class="sidebar-link">
+                                <i data-feather="check" width="20"></i>  
+                                <span>Data Cuti Karyawan <span class="badge bg-danger"><b><?php echo $data['total'] ?></b></span></span>
+                            </a>
+                            <ul class="submenu">
+                                <li>
+                                    <a href="../app_cuti/index.php">Pengajuan Cuti <span class="badge bg-danger"><b><?php echo $data['total'] ?></b></span></a>
+                                </li>
+                                
+                                <li>
+                                    <a href="../app_cuti/list.php">List Cuti</a>
+                                </li>
+                            </ul>
+                            <?php
+                                }
+                            ?>
+                        </li>
+                        <?php
+                            }
+                        ?>
+                        <?php
+                            if($_SESSION['role'] == 'manager') {
+                        ?>
+                        <li class="sidebar-item  has-sub">
+                            <?php
+                                $query ="SELECT COUNT(status) AS total FROM cuti WHERE status='Approve HOD'";
+                                $hasil = mysqli_query($koneksi, $query);
+                                while($data = mysqli_fetch_array($hasil))
+                                {
+                            ?>
+                            <a href="#" class="sidebar-link">
+                                <i data-feather="check" width="20"></i>  
+                                <span>Data Cuti Karyawan <span class="badge bg-danger"><b><?php echo $data['total'] ?></b></span></span>
+                            </a>
+                            <ul class="submenu">
+                                <li>
+                                    <a href="../app_cuti/index.php">Pengajuan Cuti <span class="badge bg-danger"><b><?php echo $data['total'] ?></b></span></a>
+                                </li>
+                                
+                                <li>
+                                    <a href="../app_cuti/list.php">List Cuti</a>
+                                </li>
+                            </ul>
+                            <?php
+                                }
+                            ?>
+                        </li>
+                        <?php
+                            }
+                        ?>
+                        <?php
+                            if($_SESSION['role'] == 'hrd') {
+                        ?>
                         <li class="sidebar-item  has-sub">
                             <a href="#" class="sidebar-link">
                                 <i data-feather="check" width="20"></i>  
                                 <span>Data Izin Karyawan</span>
                             </a>
                             <ul class="submenu">
-                                <?php
-                                    if($_SESSION['role'] == 'hod' || $_SESSION['role'] == 'manager') {
-                                ?>
-                                    <li>
-                                        <a href="../app_izin/index.php">App Pengajuan Izin</a>
-                                    </li>
-                                    
-                                    <li>
-                                        <a href="../app_izin/list.php">List Izin</a>
-                                    </li>
-                                <?php
-                                    }
-                                ?>
-                                <?php
-                                    if($_SESSION['role'] == 'hrd') {
-                                ?>  
-                                    <li>
-                                        <a href="../app_izin/list.php">List Izin</a>
-                                    </li>
-                                <?php
-                                    }
-                                ?>
+                                <li>
+                                    <a href="../app_izin/list.php">List Cuti</a>
+                                </li>
                             </ul>
                         </li>
+                        <?php
+                            }
+                        ?>
+                         <?php
+                            if($_SESSION['role'] == 'hod') {
+                        ?>
+                        <li class="sidebar-item  has-sub">
+                            <?php
+                                $query ="SELECT COUNT(status) AS total FROM izin WHERE status='On Progress'";
+                                $hasil = mysqli_query($koneksi, $query);
+                                while($data = mysqli_fetch_array($hasil))
+                                {
+                            ?>
+                            <a href="#" class="sidebar-link">
+                                <i data-feather="check" width="20"></i>  
+                                <span>Data Izin Karyawan <span class="badge bg-danger"><b><?php echo $data['total'] ?></b></span></span>
+                            </a>
+                            <ul class="submenu">
+                                <li>
+                                    <a href="../app_izin/index.php">Pengajuan Izin <span class="badge bg-danger"><b><?php echo $data['total'] ?></b></span></a>
+                                </li>
+                                
+                                <li>
+                                    <a href="../app_izin/list.php">List Izin</a>
+                                </li>
+                            </ul>
+                            <?php
+                                }
+                            ?>
+                        </li>
+                        <?php
+                            }
+                        ?>
+                        <?php
+                            if($_SESSION['role'] == 'manager') {
+                        ?>
+                        <li class="sidebar-item  has-sub">
+                            <?php
+                                $query ="SELECT COUNT(status) AS total FROM izin WHERE status='Approve HOD'";
+                                $hasil = mysqli_query($koneksi, $query);
+                                while($data = mysqli_fetch_array($hasil))
+                                {
+                            ?>
+                            <a href="#" class="sidebar-link">
+                                <i data-feather="check" width="20"></i>  
+                                <span>Data Izin Karyawan <span class="badge bg-danger"><b><?php echo $data['total'] ?></b></span></span>
+                            </a>
+                            <ul class="submenu">
+                                <li>
+                                    <a href="../app_izin/index.php">Pengajuan Izin <span class="badge bg-danger"><b><?php echo $data['total'] ?></b></span></a>
+                                </li>
+                                
+                                <li>
+                                    <a href="../app_izin/list.php">List Izin</a>
+                                </li>
+                            </ul>
+                            <?php
+                                }
+                            ?>
+                        </li>
+                        <?php
+                            }
+                        ?>
 
 
                         <li class="sidebar-title">Data Internal</li>
