@@ -34,6 +34,7 @@ class Mailer
                         <li>Keterangan: $keterangan</li>
                     </ul>
                     <p style='color: #666;'>Silakan konfirmasi pengajuan $context pada aplikasi.</p>
+                    <p style='color: #666;'>Jika data pada sistem tidak muncul, dimohon untuk logout dan silakan login kembali.</p>
                     <a href='$link' style='display: inline-block; padding: 10px 20px; background-color: #007bff; color: #fff; text-decoration: none; border-radius: 5px;'>Konfirmasi</a>
                 </div>
             </div>
@@ -56,7 +57,7 @@ class Mailer
             //Recipients
             $mail->setFrom('absen@pt-prasasti.com', 'Absen Eprass');
             $mail->addAddress($emailTo, 'HOD & Manager');
-            $mail->addAddress('rifan@pt-prasasti.com', 'HRD');
+            $mail->addAddress('widi@pt-prasasti.com', 'HRD');
 
             //Content
             $mail->isHTML(true);

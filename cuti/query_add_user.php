@@ -32,10 +32,10 @@ if ($sisaCutiSebelumnya >= $lama) {
 
     $link = 'https://absen.pt-prasasti.com/app_cuti/index.php';
     $subject = "Pengajuan Cuti dari $nama. Segera lakukan konfirmasi.";
-    $emailTo = "auliarasyidalzahrawi@gmail.com"; // HOD
+    $emailTo = "dhita@pt-prasasti.com"; // HOD
     $mailer = new Mailer($subject, $link, $nama, $lama, $tanggal_mulai, $tanggal_akhir, $keterangan, $alasan = 'Cuti', $context="Cuti", $emailTo);
     if ($mailer) {
-        echo "<script>alert('Data Pengajuan Izin Terkirim');window.location='form_add_user.php'</script>";
+        echo "<script>alert('Data Pengajuan Cuti Terkirim');window.location='form_add_user.php'</script>";
     } else {
         echo "smtp gagal";
     }

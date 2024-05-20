@@ -13,7 +13,7 @@ $alasan             = $_POST['type'];
 $status             = 'On Progress';
 $start = date('Y-m-d', strtotime($tanggal_mulai));
 $end = date('Y-m-d', strtotime($tanggal_akhir));
-$emailTo = "auliarasyidalzahrawi@gmail.com"; // HOD
+$emailTo = "dhita@pt-prasasti.com"; // HOD
 
 $today = date('Y-m-d');
 $threeDaysBefore = date('Y-m-d', strtotime('-3 days', strtotime($tanggal_mulai)));
