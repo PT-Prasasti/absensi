@@ -17,6 +17,7 @@
                                             <th class="text-center">Nama Karyawan</th>
                                             <th class="text-center">Total Jam Kerja</th>
                                             <th class="text-center">Data</th>
+                                            <th class="text-center">Cetak</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -48,6 +49,11 @@
                                             <td class="text-center">
                                                 <a href='detail.php?nip=<?= $data['nip'] ?>' class="btn icon btn-primary">
                                                     <i data-feather="file-text"></i>
+                                                </a>
+                                            </td>
+                                            <td class="text-center">
+                                                <a href='cetak.php?nip=<?= $data['nip'] ?>' class="btn icon btn-success" target="_blank">
+                                                    <i data-feather="printer"></i>
                                                 </a>
                                             </td>
                                         </tr>
