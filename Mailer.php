@@ -51,8 +51,8 @@ class Mailer
             $mail->SMTPAuth   = true;
             $mail->Username   = 'absen@pt-prasasti.com';
             $mail->Password   = 'absensi123';
-            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-            $mail->Port       = 587;
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+            $mail->Port       = 465;
 
             //Recipients
             $mail->setFrom('absen@pt-prasasti.com', 'Absen Eprass');
