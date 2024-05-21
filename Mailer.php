@@ -45,7 +45,7 @@ class Mailer
         $mail = new PHPMailer(true);
         try {
             //Server settings
-            $mail->SMTPDebug = SMTP::DEBUG_CLIENT;
+            $mail->SMTPDebug = 3;
             $mail->isSMTP();
             $mail->Host       = 'srv152.niagahoster.com';
             $mail->SMTPAuth   = true;
