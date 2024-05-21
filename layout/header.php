@@ -21,6 +21,8 @@
     <link rel="shortcut icon" href="../assets/images/logo.png" type="image/x-icon">
     <link rel="stylesheet" href="../assets/vendors/simple-datatables/style.css">
 
+    <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/main.css' rel='stylesheet' />
+
 </head>
 <body>
     <div id="app">
