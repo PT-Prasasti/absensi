@@ -51,8 +51,7 @@
                     events: [ 
                         <?php 
 
-                            //melakukan koneksi ke database
-                            $koneksi    = mysqli_connect('localhost', 'root', '', 'absensi');
+                            include '../koneksi.php';
                             //mengambil data dari tabel jadwal
                             $data       = mysqli_query($koneksi,'select * from jadwal');
                             //melakukan looping

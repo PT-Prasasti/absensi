@@ -4,7 +4,7 @@
     $mulai      = $_POST['mulai'];
     $selesai    = $_POST['selesai'];
 
-    $koneksi = mysqli_connect('localhost', 'root', '', 'absensi');
+    include '../koneksi.php';
 
     mysqli_query($koneksi, "insert into jadwal set kegiatan='$kegiatan', mulai='$mulai', selesai='$selesai' ");
     
