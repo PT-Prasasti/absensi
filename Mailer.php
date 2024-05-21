@@ -47,7 +47,7 @@ class Mailer
             //Server settings
             $mail->SMTPDebug = SMTP::DEBUG_CLIENT;
             $mail->isSMTP();
-            $mail->Host       = 'mail.pt-prasasti.com';
+            $mail->Host       = 'srv152.niagahoster.com';
             $mail->SMTPAuth   = true;
             $mail->Username   = 'absen@pt-prasasti.com';
             $mail->Password   = 'absensi123';
