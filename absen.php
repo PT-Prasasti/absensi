@@ -111,7 +111,7 @@
                                                     <tr>
                                                         <td class="text-center">
                                                             <span class="badge bg-info">
-                                                                <?= Date('d/m/Y', strtotime($dt['tgl'])) ?>
+                                                                <?= Date('d/m/Y', strtotime($data['tgl'])) ?>
                                                             </span>  
                                                         </td>
                                                         <td class="text-center">

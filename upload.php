@@ -6,6 +6,13 @@ $telepon = $_POST['telepon'];
 $absen = $_POST['absen'];
 $time = time();
 $tgl = date('Y-m-d');
+$current_hour = date('H');
+
+function isHoliday($koneksi, $tgl) {
+    $query = "SELECT * FROM jadwal WHERE '$tgl' BETWEEN DATE(mulai) AND DATE(selesai)";
+    $result = mysqli_query($koneksi, $query);
+    return mysqli_num_rows($result) > 0;
+}
 
 $cek = "SELECT * FROM karyawan WHERE nip='$nip' AND telepon='$telepon'";
 if (mysqli_num_rows(mysqli_query($koneksi, $cek)) < 1) {
