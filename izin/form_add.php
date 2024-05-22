@@ -164,6 +164,12 @@ $kodeizin = $huruf . sprintf("%03s", $urutan);
             start_date.disabled = false;
             end_date.disabled = false;
             bukti_sakit.classList.add('hidden');
+            start_date.addEventListener("change", function () {
+                document.getElementById('hidden_tanggal_mulai').value = this.value;
+            });
+            end_date.addEventListener("change", function () {
+                document.getElementById('hidden_tanggal_akhir').value = this.value;
+            });
         }
     });
 </script>
