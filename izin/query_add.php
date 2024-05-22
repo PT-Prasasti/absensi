@@ -13,7 +13,8 @@ $alasan             = $_POST['type'];
 $status             = 'On Progress';
 $start = date('Y-m-d', strtotime($tanggal_mulai));
 $end = date('Y-m-d', strtotime($tanggal_akhir));
-$emailTo = "dhita@pt-prasasti.com"; // HOD
+$emailHod = "dhita@pt-prasasti.com"; // HOD
+$emailHrd = "widi@pt-prasasti.com"; // HRD
 
 $today = date('Y-m-d');
 $threeDaysBefore = date('Y-m-d', strtotime('-3 days', strtotime($tanggal_mulai)));
@@ -24,8 +25,9 @@ if ($alasan == 'Izin') {
         if (mysqli_query($koneksi, $query)) {
             $link = 'https://absen.pt-prasasti.com/app_izin/index.php';
             $subject = "Pengajuan Izin dari $nama. Segera lakukan konfirmasi.";
-            $mailer = new Mailer($subject, $link, $nama, $lama, $start, $end, $keterangan, $alasan, $context="Izin", $emailTo);
-            if ($mailer) {
+            $mailerHod = new Mailer($subject, $link, $nama, $lama, $start, $end, $keterangan, $alasan, $context="Izin", $emailHod);
+            $mailerHrd = new Mailer($subject, $link, $nama, $lama, $start, $end, $keterangan, $alasan, $context="Izin", $emailHrd, true);
+            if ($mailerHod && $mailerHrd) {
                 echo "<script>alert('Data Pengajuan Izin Terkirim');window.location='form_add.php'</script>";
             } else {
                 echo "smtp gagal";

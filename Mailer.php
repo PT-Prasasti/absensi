@@ -8,7 +8,7 @@ $mail = new PHPMailer(true);
 
 class Mailer
 {
-    public function __construct($subject, $link, $nama, $lama, $start, $end, $keterangan, $type, $context, $emailTo)
+    public function __construct($subject, $link, $nama, $lama, $start, $end, $keterangan, $type, $context, $emailTo, $isHRD = false)
     {
         $body = "<!DOCTYPE html>
         <html lang='en'>
@@ -17,7 +17,6 @@ class Mailer
             <meta name='viewport' content='width=device-width, initial-scale=1.0'>
             <title>Pengajuan $context Eprass</title>
         </head>
-
         <body>
             <div style='font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;'>
                 <div style='background-color: #f4f4f4; padding: 20px;'>
@@ -34,13 +33,17 @@ class Mailer
                         <li>Keterangan: $keterangan</li>
                     </ul>
                     <p style='color: #666;'>Silakan konfirmasi pengajuan $context pada aplikasi.</p>
-                    <p style='color: #666;'>Jika data pada sistem tidak muncul, dimohon untuk logout dan silakan login kembali.</p>
-                    <a href='$link' style='display: inline-block; padding: 10px 20px; background-color: #007bff; color: #fff; text-decoration: none; border-radius: 5px;'>Konfirmasi</a>
+                    <p style='color: #666;'>Jika data pada sistem tidak muncul, dimohon untuk logout dan silakan login kembali.</p>";
+        
+        if (!$isHRD) {
+            $body .= "<a href='$link' style='display: inline-block; padding: 10px 20px; background-color: #007bff; color: #fff; text-decoration: none; border-radius: 5px;'>Konfirmasi</a>";
+        }
+
+        $body .= "
                 </div>
             </div>
         </body>
-        </html>
-        ";
+        </html>";
 
         $mail = new PHPMailer(true);
         try {
@@ -56,8 +59,7 @@ class Mailer
 
             //Recipients
             $mail->setFrom('absen@pt-prasasti.com', 'Absen Eprass');
-            $mail->addAddress($emailTo, 'HOD & Manager');
-            $mail->addAddress('widi@pt-prasasti.com', 'HRD');
+            $mail->addAddress($emailTo, 'HOD, HRD & Manager');
 
             //Content
             $mail->isHTML(true);
