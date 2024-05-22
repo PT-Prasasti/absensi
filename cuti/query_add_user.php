@@ -1,6 +1,6 @@
 <?php
 include '../koneksi.php';
-include '../mailer.php';
+include '../Mailer.php';
 
 $kode_cuti          = $_POST['kode_cuti'];
 $nip                = $_POST['nip'];

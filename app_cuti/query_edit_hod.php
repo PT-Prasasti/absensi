@@ -2,7 +2,7 @@
 
 require '../vendor/autoload.php';
 include '../koneksi.php';
-include '../mailer.php';
+include '../Mailer.php';
 
 // echo '<pre>';
 // var_dump($_POST);
