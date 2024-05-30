@@ -94,7 +94,7 @@
                         <tr>
                             <td class="text-center">
                             <?php
-                                $query="SELECT SUM(lama) AS izin from izin where nip='$nip' and type='izin' ";
+                                $query="SELECT SUM(lama) AS izin from izin where MONTH(tanggal_mulai)=MONTH(CURRENT_DATE) and nip='$nip' and type='izin' ";
                                 $hasil=mysqli_query($koneksi, $query);
                                 while($dt=mysqli_fetch_array($hasil)){
                             ?>
@@ -105,7 +105,7 @@
                             </td>
                             <td class="text-center">
                             <?php
-                                $query="SELECT SUM(lama) AS sakit from izin where nip='$nip' and type='sakit' ";
+                                $query="SELECT SUM(lama) AS sakit from izin where MONTH(tanggal_mulai)=MONTH(CURRENT_DATE) and nip='$nip' and type='sakit' ";
                                 $hasil=mysqli_query($koneksi, $query);
                                 while($dt=mysqli_fetch_array($hasil)){
                             ?>
@@ -116,7 +116,7 @@
                             </td>
                             <td class="text-center">
                             <?php
-                                $query="SELECT SUM(lama) AS alfa from izin where nip='$nip' and type='alfa' ";
+                                $query="SELECT SUM(lama) AS alfa from izin where MONTH(tanggal_mulai)=MONTH(CURRENT_DATE) and nip='$nip' and type='alfa' ";
                                 $hasil=mysqli_query($koneksi, $query);
                                 while($dt=mysqli_fetch_array($hasil)){
                             ?>
