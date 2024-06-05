@@ -45,7 +45,7 @@ try {
         } else {
             $link = 'https://absen.pt-prasasti.com/form_login_manager.php';
             $subject = $manager ? "Pengajuan Cuti dari $nama. Segera lakukan konfirmasi. (Done)" : "Pengajuan Cuti dari $nama. Segera lakukan konfirmasi. (Approved by HOD)";
-            $emailTo = $manager ? "test@pt-prasasti.com" : "test@pt-prasasti.com"; // MANAGER
+            $emailTo = $manager ? "sales@pt-prasasti.com" : "sales@pt-prasasti.com"; // MANAGER
             $emailHrd = "test@pt-prasasti.com"; // HRD
             $mailerHod = new Mailer($subject, $link, $nama, $lama, $tanggal_mulai, $tanggal_akhir, $keterangan, $alasan = 'Cuti', $context="Cuti", $emailTo);
             $mailerHrd = new Mailer($subject, $link, $nama, $lama, $tanggal_mulai, $tanggal_akhir, $keterangan, $alasan = 'Cuti', $context="Cuti", $emailHrd, true);
