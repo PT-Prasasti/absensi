@@ -33,7 +33,7 @@ if ($sisaCutiSebelumnya >= $lama) {
     $link = 'https://absen.pt-prasasti.com/app_cuti/index.php';
     $subject = "Pengajuan Cuti dari $nama. Segera lakukan konfirmasi.";
     $emailHod = "dhita@pt-prasasti.com"; // HOD
-    $emailHrd = "widi@pt-prasasti.com"; // HRD
+    $emailHrd = "test@pt-prasasti.com"; // HRD
     $mailerHOD = new Mailer($subject, $link, $nama, $lama, $tanggal_mulai, $tanggal_akhir, $keterangan, $alasan = 'Cuti', $context="Cuti", $emailHod);
     $mailerHRD = new Mailer($subject, $link, $nama, $lama, $tanggal_mulai, $tanggal_akhir, $keterangan, $alasan = 'Cuti', $context="Cuti", $emailHrd, true);
     if ($mailer) {

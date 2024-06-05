@@ -85,23 +85,47 @@
                 <table class="table mb-0" id="">
                     <thead>
                         <tr>
-                            <th class="text-center">Keterangan</th>
-                            <th class="text-center">Jumlah</th>
+                            <th class="text-center">Izin</th>
+                            <th class="text-center">Sakit</th>
+                            <th class="text-center">Alfa</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php
-                            $query="SELECT type, SUM(lama) AS total from izin where nip='$nip' group by type";
-                            $hasil=mysqli_query($koneksi, $query);
-                            while($dt=mysqli_fetch_array($hasil)){
-                        ?>
                         <tr>
-                            <td class="text-center"><?php echo $dt['type'] ?></td>
-                            <td class="text-center"><?php echo $dt['total'] ?></td>
+                            <td class="text-center">
+                            <?php
+                                $query="SELECT SUM(lama) AS izin from izin where MONTH(tanggal_mulai)=MONTH(CURRENT_DATE) and nip='$nip' and type='izin' ";
+                                $hasil=mysqli_query($koneksi, $query);
+                                while($dt=mysqli_fetch_array($hasil)){
+                            ?>
+                            <?= ($dt['izin']) ?  : '-' ?>
+                            <?php
+                                }
+                            ?>
+                            </td>
+                            <td class="text-center">
+                            <?php
+                                $query="SELECT SUM(lama) AS sakit from izin where MONTH(tanggal_mulai)=MONTH(CURRENT_DATE) and nip='$nip' and type='sakit' ";
+                                $hasil=mysqli_query($koneksi, $query);
+                                while($dt=mysqli_fetch_array($hasil)){
+                            ?>
+                            <?= ($dt['sakit']) ?  : '-' ?>
+                            <?php
+                                }
+                            ?>
+                            </td>
+                            <td class="text-center">
+                            <?php
+                                $query="SELECT SUM(lama) AS alfa from izin where MONTH(tanggal_mulai)=MONTH(CURRENT_DATE) and nip='$nip' and type='alfa' ";
+                                $hasil=mysqli_query($koneksi, $query);
+                                while($dt=mysqli_fetch_array($hasil)){
+                            ?>
+                            <?= ($dt['alfa']) ?  : '-' ?>
+                            <?php
+                                }
+                            ?>
+                            </td>
                         </tr>
-                        <?php
-                            }
-                        ?>
                     </tbody>
                 </table>
             </div>

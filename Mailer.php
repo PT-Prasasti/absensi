@@ -15,7 +15,7 @@ class Mailer
         <head>
             <meta charset='UTF-8'>
             <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-            <title>Pengajuan $context Eprass</title>
+            <title>Pengajuan $context PRASASTI</title>
         </head>
         <body>
             <div style='font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;'>
@@ -58,7 +58,7 @@ class Mailer
             $mail->Port       = 587;
 
             //Recipients
-            $mail->setFrom('absen@pt-prasasti.com', 'Absen Eprass');
+            $mail->setFrom('absen@pt-prasasti.com', 'Absen PRASASTI');
             $mail->addAddress($emailTo, 'HOD, HRD & Manager');
 
             //Content
