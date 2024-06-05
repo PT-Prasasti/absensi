@@ -30,7 +30,7 @@ if ($sisaCutiSebelumnya >= $lama) {
     $query3 = "UPDATE karyawan SET sisa_cuti = sisa_cuti - $lama WHERE nip = '$nip'";
     mysqli_query($koneksi, $query3);
 
-    $link = 'https://absen.pt-prasasti.com/app_cuti/index.php';
+    $link = 'https://absen.pt-prasasti.com/form_login_manager.php';
     $subject = "Pengajuan Cuti dari $nama. Segera lakukan konfirmasi.";
     $emailHod = "rifan@pt-prasasti.com"; // HOD
     $emailHrd = "test@pt-prasasti.com"; // HRD
