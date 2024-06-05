@@ -28,6 +28,6 @@ if (!isHoliday($koneksi, $tgl) && $currentTime >= '12:00:00') {
         
         // Tambahkan data ke tabel izin
         $insert_alpha = "INSERT INTO izin (kode_izin, nip, tanggal_mulai, tanggal_akhir, lama, keterangan, status, type) VALUES ('$kodeizin', '$nip', '$tgl', '$tgl', '1', 'Tidak Presensi Masuk Melebihi Jam 12 Siang.', 'Done', 'Alfa')";
-        mysqli_query($koneksi, $insert_alpha);
+        $query = mysqli_query($koneksi, $insert_alpha);
     }
 }
