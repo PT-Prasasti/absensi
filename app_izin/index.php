@@ -51,7 +51,7 @@
                                                 if($data['status'] == 'Approve HOD'){
                                                     echo '<td class="text-center">
                                                             <span class="badge bg-warning">
-                                                                <button type="button" class="btn" data-toggle="modal" data-target="#exampleModalCenter">
+                                                                <button type="button" class="btn" data-toggle="modal" data-target="#exampleModalCenter_'.$data['kode_izin'].'">
                                                                     <b>Approve HOD</b>
                                                                 </button>
                                                             </span>
@@ -75,7 +75,7 @@
                                                 if($data['status'] == 'On Progress'){
                                                     echo '<td class="text-center">
                                                             <span class="badge bg-warning">
-                                                                <button type="button" class="btn" data-toggle="modal" data-target="#exampleModalCenter">
+                                                                <button type="button" class="btn" data-toggle="modal" data-target="#exampleModalCenter_'.$data['kode_izin'].'">
                                                                     <b>On Progress</b>
                                                                 </button>
                                                             </span>
@@ -117,7 +117,7 @@
                                             ?>
                                         </tr>
 
-                                        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                        <div class="modal fade" id="exampleModalCenter_<?= $data['kode_izin']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                             <div class="modal-dialog modal-dialog-centered modal-dialog-centered modal-dialog-scrollable" role="document">
                                                 <form method="post" action="query_edit.php" enctype="multipart/form-data">
                                                     <div class="modal-content">
@@ -129,6 +129,12 @@
                                                         </div>
                                                         <div class="modal-body">
                                                             <input type="text" class="form-control" name="kode_izin" value="<?php echo $data['kode_izin']; ?>" hidden>
+                                                            <input type="hidden" name="nama_karyawan" value="<?= $data['nama'] ?>">
+                                                            <input type="hidden" name="lama" value="<?= $data['lama'] ?>">
+                                                            <input type="hidden" name="tanggal_mulai" value="<?= $data['tanggal_mulai'] ?>">
+                                                            <input type="hidden" name="tanggal_akhir" value="<?= $data['tanggal_akhir'] ?>">
+                                                            <input type="hidden" name="keterangan" value="<?= $data['keterangan'] ?>">
+                                                            <input type="hidden" name="manager" value="1">
                                                             
                                                             <label for="" class="form-label">Select Status</label>
                                                             <fieldset class="form-group">
@@ -215,7 +221,7 @@
                                                 if($data['status'] == 'Approve HOD'){
                                                     echo '<td class="text-center">
                                                             <span class="badge bg-warning">
-                                                                <button type="button" class="btn" data-toggle="modal" data-target="#exampleModalCenter">
+                                                                <button type="button" class="btn" data-toggle="modal" data-target="#exampleModalCenter_'.$data['kode_izin'].'">
                                                                     <b>Approve HOD</b>
                                                                 </button>
                                                             </span>
@@ -239,7 +245,7 @@
                                                 if($data['status'] == 'On Progress'){
                                                     echo '<td class="text-center">
                                                             <span class="badge bg-warning">
-                                                                <button type="button" class="btn" data-toggle="modal" data-target="#exampleModalCenter">
+                                                                <button type="button" class="btn" data-toggle="modal" data-target="#exampleModalCenter_'.$data['kode_izin'].'">
                                                                     <b>On Progress</b>
                                                                 </button>
                                                             </span>
@@ -281,7 +287,7 @@
                                             ?>
                                         </tr>
 
-                                        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                        <div class="modal fade" id="exampleModalCenter_<?= $data['kode_izin'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                             <div class="modal-dialog modal-dialog-centered modal-dialog-centered modal-dialog-scrollable" role="document">
                                                 <form method="post" action="query_edit.php" enctype="multipart/form-data">
                                                     <div class="modal-content">
@@ -293,6 +299,11 @@
                                                         </div>
                                                         <div class="modal-body">
                                                             <input type="text" class="form-control" name="kode_izin" value="<?php echo $data['kode_izin']; ?>" hidden>
+                                                            <input type="hidden" name="nama_karyawan" value="<?= $data['nama'] ?>">
+                                                            <input type="hidden" name="lama" value="<?= $data['lama'] ?>">
+                                                            <input type="hidden" name="tanggal_mulai" value="<?= $data['tanggal_mulai'] ?>">
+                                                            <input type="hidden" name="tanggal_akhir" value="<?= $data['tanggal_akhir'] ?>">
+                                                            <input type="hidden" name="keterangan" value="<?= $data['keterangan'] ?>">
                                                             
                                                             <label for="" class="form-label">Select Status</label>
                                                             <fieldset class="form-group">
