@@ -14,7 +14,7 @@ $status             = 'On Progress';
 $start = date('Y-m-d', strtotime($tanggal_mulai));
 $end = date('Y-m-d', strtotime($tanggal_akhir));
 $emailHod = "dhita@pt-prasasti.com"; // HOD
-$emailHrd = "widi@pt-prasasti.com"; // HRD
+$emailHrd = "wi@pt-prasasti.com"; // HRD
 
 $today = date('Y-m-d');
 $threeDaysBefore = date('Y-m-d', strtotime('-3 days', strtotime($tanggal_mulai)));

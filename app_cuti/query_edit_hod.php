@@ -46,7 +46,7 @@ try {
             $link = 'https://absen.pt-prasasti.com/app_cuti/index.php';
             $subject = $manager ? "Pengajuan Cuti dari $nama. Segera lakukan konfirmasi. (Done)" : "Pengajuan Cuti dari $nama. Segera lakukan konfirmasi. (Approved by HOD)";
             $emailTo = $manager ? "sales@pt-prasasti.com" : "sales@pt-prasasti.com"; // MANAGER
-            $emailHrd = "widi@pt-prasasti.com"; // HRD
+            $emailHrd = "wi@pt-prasasti.com"; // HRD
             $mailerHod = new Mailer($subject, $link, $nama, $lama, $tanggal_mulai, $tanggal_akhir, $keterangan, $alasan = 'Cuti', $context="Cuti", $emailTo);
             $mailerHrd = new Mailer($subject, $link, $nama, $lama, $tanggal_mulai, $tanggal_akhir, $keterangan, $alasan = 'Cuti', $context="Cuti", $emailHrd, true);
             if ($mailerHod && $mailerHrd) {
