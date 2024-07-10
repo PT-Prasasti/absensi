@@ -85,7 +85,8 @@
                                     <?php
                                     $query = "SELECT karyawan.nama,
                                      SUM(CASE WHEN izin.type = 'Izin' THEN 1 ELSE 0 END) AS jumlah_izin,
-                                     SUM(CASE WHEN izin.type = 'Sakit' THEN 1 ELSE 0 END) AS jumlah_sakit
+                                     SUM(CASE WHEN izin.type = 'Sakit' THEN 1 ELSE 0 END) AS jumlah_sakit,
+                                     SUM(CASE WHEN izin.type = 'Alfa' THEN 1 ELSE 0 END) AS jumlah_sakit
                                     FROM karyawan LEFT JOIN izin ON karyawan.nip = izin.nip WHERE MONTH(izin.tanggal_mulai)=MONTH(CURRENT_DATE) GROUP BY karyawan.nama ";
                                     $hasil = mysqli_query($koneksi, $query);
                                     while ($data = mysqli_fetch_assoc($hasil)) {
@@ -126,7 +127,8 @@
                                     <?php
                                     $query = "SELECT karyawan.nama,
                                      SUM(CASE WHEN izin.type = 'Izin' THEN 1 ELSE 0 END) AS jumlah_izin,
-                                     SUM(CASE WHEN izin.type = 'Sakit' THEN 1 ELSE 0 END) AS jumlah_sakit
+                                     SUM(CASE WHEN izin.type = 'Sakit' THEN 1 ELSE 0 END) AS jumlah_sakit,
+                                     SUM(CASE WHEN izin.type = 'Alfa' THEN 1 ELSE 0 END) AS jumlah_sakit
                                     FROM karyawan LEFT JOIN izin ON karyawan.nip = izin.nip WHERE YEAR(izin.tanggal_mulai)=YEAR(CURRENT_DATE) GROUP BY karyawan.nama";
                                     $hasil = mysqli_query($koneksi, $query);
                                     while ($data = mysqli_fetch_assoc($hasil)) {
